@@ -8,7 +8,7 @@ layui.define(['element', 'layer', 'form'], function (exports) {
         passWord: [/^[\S]{6,12}$/, '密码必须6到12位'],
         account: function (value) {
             if (value.length <= 0 || value.length > 10) {
-                return "账号必须1到10位"
+                return "账号必须1s到10位"
             }
             var reg = /^[a-zA-Z0-9]*$/;
             if (!reg.test(value)) {
@@ -21,23 +21,57 @@ layui.define(['element', 'layer', 'form'], function (exports) {
             }
         },
     });
+	
+	// function getResponse(resp){
+     // console.log(resp);  // resp 即验证成功后获取的值
+	// }
     //监听登陆提交
+	
+	
+	  // loginHtml += 'header("Access-Control-Allow-Origin: http://mogo.php-garlic.cn")';
+	
+	// function getResponse(resp){
+	// alert(1);
+         // console.log(resp);  // resp 即验证成功后获取的值
+         // $.ajax({
+            // url:'https://captcha.luosimao.com/api/site_verify',
+            // type:'post',
+            // datatype:'json',
+            // async: false,
+			// beforeSend: function(xhr){xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://mogo.php-garlic.cn');},
+            // data:{
+                // 'api_key':'40177878e296e9af803141a89662d464',
+                // 'response':resp
+            // },
+            // success:function(res) {
+                // res = JSON.parse(res);
+                // console.log(res);
+                // alert(1);
+            // }
+        // });
+    // }
     form.on('submit(login)', function (data) {
+	
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         var index = layer.load(1);
-        //console.log(data);
-        $.ajax({
-            type: 'post',
-            url : '/admin/login',
-            data: {'username':data.field.account, 'pass': data.field.password, 'machine':data.field.luotest_response},
-            success:function(data){
-                console.log(data);
-            }
-        });
+        console.log(data);
+        // $.ajax({
+            // type: 'post',
+            // url : '/admin/login',
+            // data: {'username':data.field.account, 'pass': data.field.password, 'machine':data.field.luotest_response},
+            // success:function(data){
+                // console.log(data);
+            // }
+        // });
+		
+
+		
+		
+		
         //setTimeout(function () {
         //    //模拟登陆
         //    layer.close(index);
@@ -68,7 +102,6 @@ layui.define(['element', 'layer', 'form'], function (exports) {
 
     function login() {
         var loginHtml = ''; //静态页面只能拼接，这里可以用iFrame或者Ajax请求分部视图。html文件夹下有login.html
-
         loginHtml += '<form class="layui-form" action="">';
         loginHtml += '<div class="layui-form-item">';
         loginHtml += '<label class="layui-form-label">账号</label>';
@@ -85,30 +118,23 @@ layui.define(['element', 'layer', 'form'], function (exports) {
         loginHtml += '<div class="layui-form-item">';
         loginHtml += '<label class="layui-form-label">人机验证</label>';
         loginHtml += '<div class="layui-input-inline pm-login-input">';
-        loginHtml += '<div class="captcha-widget-menu theme-default">';
-        loginHtml +=  '<span class="captcha-widget-copyright">';
-        loginHtml +=  '<a href="javascript:" id="l_captcha_link" title="Luosimao人机验证服务"><i class="copyright-icon"></i></a>';
-        loginHtml +=  '</span>';
-        loginHtml +=  '<div class="captcha-widget-event">';
-        loginHtml +=  '<span class="captcha-widget-status">';
-        loginHtml +=  '<i class="status-icon"></i>';
-        loginHtml +=  '</span>';
-        loginHtml +=  '<span class="captcha-widget-text">点击此处进行人机识别验证</span>';
-        loginHtml +=  '</div>';
-        loginHtml +=  '</div>';
+        loginHtml +='<div class="l-captcha" data-callback="getResponse" data-site-key="be12cbdec9ef5bb8bb491ca96f9edd85">  </div> ';
+		loginHtml += '<input type="hidden" id="result_response" name="result_response" lay-verify="result_response">';
         loginHtml += '</div>';
         loginHtml += '</div>';
-        loginHtml += '<script type="text/javascript" src="//captcha.luosimao.com/static/dist/widget.js?v=201706221332.js"></script>';
         loginHtml += '<div class="layui-form-item" style="margin-top:25px;margin-bottom:0;">';
         loginHtml += '<div class="layui-input-block">';
         loginHtml += ' <button class="layui-btn" style="width:230px;" lay-submit="" lay-filter="login">立即登录</button>';
         loginHtml += ' </div>';
         loginHtml += ' </div>';
         loginHtml += '</form>';
+        loginHtml += '<script src="//captcha.luosimao.com/static/dist/api.js"></script>';
+
+        //loginHtml += '</form>';
 
         layer.open({
             id: 'layer-login',
-            type: 2,
+            type: 1,
             title: false,
             shade: 0.4,
             shadeClose: true,
@@ -116,10 +142,13 @@ layui.define(['element', 'layer', 'form'], function (exports) {
             closeBtn: 0,
             anim: 1,
             skin: 'pm-layer-login',
-            content: 'layerlogin'
+            content: loginHtml
         });
         layui.form().render('checkbox');
     }
+	
+	
+
 
     exports('index', {});
 });

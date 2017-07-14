@@ -13,15 +13,16 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function login()
-    {
-       return view('admin.index');
+	{
+	
+		return view('admin.index');
     }
 
-    public function layerlogin()
-    {
-        return view('admin.main.login.login');
-    }
-
+ 
+	public function getAjaxLogin( Request $request )
+	{
+		dd($request->all());
+	}
     /**
      * Show the form for creating a new resource.
      *

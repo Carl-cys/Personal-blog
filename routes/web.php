@@ -20,9 +20,11 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('/article', 'Admin\ArticleController');
 
-    Route::any('/login', 'Admin\LoginController@login');
+    Route::get('/login', 'Admin\LoginController@login');
+	
+    Route::post('/getAjaxLogin', 'Admin\LoginController@getAjaxLogin');
 
-    Route::get('/layerlogin', 'Admin\LoginController@layerlogin');
+  
 //    Route::resource('/login', 'Admin\LoginController');
 
 
