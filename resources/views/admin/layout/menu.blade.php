@@ -3,15 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <title>Mogo后台管理系统</title>
-    <link rel="shortcut icon" href="{{asset('admin/images/Logo_40.png')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset('templates/admin/images/Logo_40.png')}}" type="image/x-icon">
     <!-- layui.css -->
-    <link href="{{asset('admin/plugin/layui/css/layui.css')}}" rel="stylesheet" />
+    <link href="{{asset('templates/admin/plugin/layui/css/layui.css')}}" rel="stylesheet" />
     <!-- font-awesome.css -->
-    <link href="{{asset('admin/plugin/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('templates/admin/plugin/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" />
     <!-- animate.css -->
-    <link href="{{asset('admin/css/animate.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('templates/admin/css/animate.min.css')}}" rel="stylesheet" />
     <!-- 本页样式 -->
-    <link href="{{asset('admin/css/main.css')}}" rel="stylesheet" />
+    <link href="{{asset('templates/admin/css/main.css')}}" rel="stylesheet" />
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
@@ -19,7 +19,7 @@
     <div class="layui-header">
         <div class="ht-console">
             <div class="ht-user">
-                <img src="{{asset('admin/images/Logo_40.png')}}" />
+                <img src="{{asset('templates/admin/images/Logo_40.png')}}" />
                 <a class="ht-user-name">超级管理员</a>
             </div>
         </div>
@@ -46,8 +46,8 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;"><i class="fa fa-file-text"></i>内容管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" data-url="{{url('admin/article')}}" data-id="1">文章管理</a></dd>
-                        <dd><a href="javascript:;" data-url="datalist.html" data-id="2">资源管理</a></dd>
+                        <dd><a href="javascript:;" data-url="{{url('/admin/article')}}" data-id="1">文章管理</a></dd>
+                        <dd><a href="javascript:;" data-url="{{url('/admin/resource')}}" data-id="2">资源管理</a></dd>
                         <dd><a href="javascript:;" data-url="datalist.html" data-id="3">时光轴管理</a></dd>
                         <dd><a href="javascript:;">笔记本管理</a></dd>
                         <dd><a href="javascript:;" data-url="datalist.html" data-id="4">文章回收站</a></dd>
@@ -59,6 +59,13 @@
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;">全部用户</a></dd>
                         <dd><a href="javascript:;">黑名单管理</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="fa fa-window-restore"></i>分类导航管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" data-url="{{url('/admin/category')}}" data-id="123">分类</a></dd>
+                        <dd><a href="javascript:;" data-url="{{url('/admin/navigation')}}" data-id="1234">导航</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -142,6 +149,7 @@
                 </div>
             </div>
         </div>
+
     </div>
     <!--底部信息-->
     <div class="layui-footer">
@@ -155,7 +163,7 @@
                 <div style="width:832px;margin:0 auto;">
                     <div class="windows-tile windows-two">
                         <i class="fa fa-file-text"></i>
-                        <span data-url="{{url('/admin/main/article/index')}}" data-id="1">文章管理</span>
+                        <span data-url="{{url('admin/main/article/index')}}" data-id="1">文章管理</span>
                     </div>
                     <div class="windows-tile windows-one">
                         <i class="fa fa-volume-up"></i>
@@ -228,11 +236,11 @@
     </div>
 </div>
 <!-- layui.js -->
-<script src="{{asset('admin/plugin/layui/layui.js')}}"></script>
+<script src="{{asset('templates/admin/plugin/layui/layui.js')}}"></script>
 <!-- layui规范化用法 -->
 <script type="text/javascript">
     layui.config({
-        base: '/admin/js/'
+        base: '/templates/admin/js/'
     }).use('main');
 </script>
 </body>

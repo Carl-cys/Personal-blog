@@ -3,6 +3,8 @@
 {{--@yield('title', '文章管理')--}}
 
 @section('style')
+    <link rel="stylesheet" type="text/css" href="{{asset('/templates/admin/css/ajaxmodify.css')}}">
+    <script src="{{asset('/templates/admin/js/ajaxmodify.js')}}" type="text/javascript"></script>
     <style>
         .layui-btn-small {
             padding: 0 15px;
@@ -20,143 +22,156 @@
         #dataConsole {
             text-align: center;
         }
-        /*分页页容量样式*/
-        /*可选*/
-        .layui-laypage {
-            display: block;
-        }
 
-        /*可选*/
-        .layui-laypage > * {
-            float: left;
-        }
-        /*可选*/
-        .layui-laypage .laypage-extend-pagesize {
-            float: right;
-        }
-        /*可选*/
-        .layui-laypage:after {
-            content: ".";
-            display: block;
-            height: 0;
-            clear: both;
-            visibility: hidden;
-        }
 
-        /*必须*/
-        .layui-laypage .laypage-extend-pagesize {
-            height: 30px;
-            line-height: 30px;
-            margin: 0px;
-            border: none;
-            font-weight: 400;
-        }
-        /*分页页容量样式END*/
     </style>
 @endsection
 
 @section('formsearch')
-    <legend>控制台</legend>
-    <div class="layui-field-box">
-        <div id="articleIndexTop">
-            <form class="layui-form layui-form-pane" action="">
-                <div class="layui-form-item" style="margin:0;margin-top:15px;">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">分类</label>
-                        <div class="layui-input-inline">
-                            <select name="city">
-                                <option value="0"></option>
-                                <option value="1">类别1</option>
-                                <option value="2">类别2</option>
-                                <option value="3">类别3</option>
-                            </select>
+
+    <fieldset id="dataConsole" class="layui-elem-field layui-field-title"  style="">
+        <legend>控制台</legend>
+        <div class="layui-field-box">
+            <div id="articleIndexTop">
+                <form class="layui-form layui-form-pane" action="">
+                    <div class="layui-form-item" style="margin:0;margin-top:15px;">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">关键词</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="keyword" autocomplete="off" value="{{$request->keyword}}" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline" style="width:auto">
+                                <button class="layui-btn" lay-submit lay-filter="formSearch">搜索</button>
+                            </div>
                         </div>
-                        <label class="layui-form-label">关键词</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="keywords" autocomplete="off" class="layui-input">
-                        </div>
-                        <div class="layui-input-inline" style="width:auto">
-                            <button class="layui-btn" lay-submit lay-filter="formSearch">搜索</button>
+                        <div class="layui-inline">
+                            <div class="layui-input-inline" style="width:auto">
+                                <a id="addNav" style="text-decoration: none;" href="{{url('/admin/article/create')}}" class="layui-btn layui-btn-normal">添加文章</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="layui-inline">
-                        <div class="layui-input-inline" style="width:auto">
-                            <a id="addArticle" class="layui-btn layui-btn-normal">发表文章</a>
-                        </div>
+                </form>
+            </div>
+        </div>
+    </fieldset>
+@endsection
+@section('content')
+    <fieldset id="category" class="layui-elem-field layui-field-title sys-list-field" >
+        <legend style="text-align:center;">导航列表</legend>
+        <div class="layui-field-box">
+            <!--内容区域 ajax获取-->
+            <table style="" class="layui-table" lay-even="">
+                <thead>
+                <tr>
+                    <th style="width: 80px">ID</th>
+                    <th style="width: 500px">标题名称</th>
+                    <th style="width: 300px">作者</th>
+                    <th style="width: 300px">类别</th>
+                    <th>置顶</th>
+                    <th>推荐</th>
+                    <th colspan="2">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @foreach($articles as $key=> $article)
+                    <tr>
+                        <td>{{$article->id}}</td>
+
+                        <td>{{$article->title}}</td>
+
+                        <td>{{$article->author}}</td>
+
+                        <td>{{$cate[$key]}}</td>
+
+                        <td>
+                            <div style="text-align: center; width: 50px;">
+                                 <span class="@if($article->read_top == '0') no @else yes @endif"   onclick="changeTableVal('read_top' , 'mogo_article', '{{$article->id}}' ,'{{url('/admin/getAjaxMod')}}',this)">
+                                 @if($article->read_top == '0')<i class=" Wrong">✘</i>否 @else  <i class="fanyes">✔</i>是 @endif
+                                 </span>
+                            </div>
+                        </td>
+                        <td>
+                            <div style="text-align: center; width: 50px;">
+                                 <span class="@if($article->read_ecommend == '0') no @else yes @endif"   onclick="changeTableVal('read_ecommend' , 'mogo_article', '{{$article->id}}' ,'{{url('/admin/getAjaxMod')}}',this)">
+                                 @if($article->read_ecommend == '0')<i class=" Wrong">✘</i>否 @else  <i class="fanyes">✔</i>是 @endif
+                                 </span>
+                            </div>
+                        </td>
+
+                        <td>
+                            <a id = 'editArticle' href="{{url('/admin/article/'.$article->id.'/edit')}}">
+                                <button  class="layui-btn layui-btn-small layui-btn-normal">
+                                    <i class="layui-icon">&#xe642;</i>
+                                </button> </a>
+                        </td>
+                        <td>
+                            {{--<a href="{{url('/admin/category/'.$cate->id.'')}}">--}}
+                            <button onclick="cate_del(this,'{{$article->id}}')" class="layui-btn layui-btn-small layui-btn-danger"><i class="layui-icon">&#xe640;</i>
+                            </button>
+                            {{--</a>--}}
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+            <div class="container" style="">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-4">
+                        {{--{{$specs->links()}}--}}
+                        {!! $articles->appends($request->only(['keyword']))->render() !!}
                     </div>
                 </div>
-            </form>
-        </div>
-    </div>
-@endsection
-
-@section('content')
-    <fieldset id="dataList" class="layui-elem-field layui-field-title sys-list-field" style="display:none;">
-        <legend style="text-align:center;">文章列表</legend>
-        <div class="layui-field-box">
-            <div id="dataContent" class="">
-                <!--内容区域 ajax获取-->
-                <table style="" class="layui-table" lay-even="">
-                    <colgroup>
-                        <col width="180">
-                        <col>
-                        <col width="150">
-                        <col width="180">
-                        <col width="90">
-                        <col width="90">
-                        <col width="50">
-                        <col width="50">
-                    </colgroup>
-                    <thead>
-                    <tr>
-                        <th>发表时间</th>
-                        <th>标题</th>
-                        <th>作者</th>
-                        <th>类别</th>
-                        <th colspan="2">选项</th>
-                        <th colspan="2">操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>2017-03-22 23:07</td>
-                        <td>不落阁后台模板源码分享</td>
-                        <td>Absolutely</td>
-                        <td>Web前端</td>
-                        <td>
-                            <form class="layui-form" action="">
-                                <div class="layui-form-item" style="margin:0;">
-                                    <input type="checkbox" name="top" title="置顶" lay-filter="top" checked>
-                                </div>
-                            </form>
-                        </td>
-                        <td>
-                            <form class="layui-form" action="">
-                                <div class="layui-form-item" style="margin:0;">
-                                    <input type="checkbox" name="top" title="推荐" lay-filter="recommend" checked>
-                                </div>
-                            </form>
-                        </td>
-                        <td>
-                            <button class="layui-btn layui-btn-small layui-btn-normal"><i class="layui-icon">&#xe642;</i></button>
-                        </td>
-                        <td>
-                            <button class="layui-btn layui-btn-small layui-btn-danger"><i class="layui-icon">&#xe640;</i></button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div id="pageNav"></div>
             </div>
         </div>
     </fieldset>
 @endsection
 
 @section('js')
-    <script src="{{asset('/admin/plugin/layui/layui.js')}}"></script>
-    <script type="text/javascript">
-        layui.config({
-            base: '/admin/js/'
-        }).use('datalist');
+    <script src="{{asset('templates/admin/plugin/layui/layui.js')}}"></script>
+    <script>
+        layui.use(['form','layer'], function(){
+            $ = layui.jquery;
+            var form = layui.form()
+                    ,layer = layui.layer
+            $('#addNav').click( function () {
+                layer.load(2);
+            });
+            $('#editArticle').click( function () {
+                layer.load(2);
+            });
+        });
+        /*-删除*/
+        function cate_del(obj,id){
+            layer.confirm('确认要删除吗？',function(index){
+                //发异步删除数据
+                var index = layer.load(2);
+                $.ajax({
+                    type: 'post',
+                    url:  '{{url('/admin/article/')}}'+'/'+id,
+                    dataType: 'json',
+                    data: { '_token':'{{csrf_token()}}', '_method': 'DELETE', 'id': id },
+                    success:function (data){
+                        if(data.status == 0){
+                            //传参数错误
+                            layer.msg(data.msg, {icon: 5,time:1000});
+                            layer.close( index );
+
+                        } else if(data.status == 1){
+                            //删除成功
+                            layer.msg(data.msg,{icon:1,time:1000});
+                            $(obj).parents("tr").remove();
+                            layer.close( index );
+                        } else {
+                            //删除失败
+                            layer.msg(data.msg, {icon: 5,time:1000});
+                            layer.close( index );
+                        }
+                    }
+                });
+
+            });
+        }
+
     </script>
 @endsection
