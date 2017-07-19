@@ -57,7 +57,7 @@
 @endsection
 @section('content')
     <fieldset id="category" class="layui-elem-field layui-field-title sys-list-field" >
-        <legend style="text-align:center;">导航列表</legend>
+        <legend style="text-align:center;">文章列表</legend>
         <div class="layui-field-box">
             <!--内容区域 ajax获取-->
             <table style="" class="layui-table" lay-even="">
@@ -143,7 +143,7 @@
         });
         /*-删除*/
         function cate_del(obj,id){
-            layer.confirm('确认要删除吗？',function(index){
+            layer.confirm('确认要添加到回收站吗？',function(index){
                 //发异步删除数据
                 var index = layer.load(2);
                 $.ajax({

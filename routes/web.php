@@ -11,21 +11,22 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/', function () {
+    return redirect('/home');
+});
 Route::group(['prefix' => 'home'], function () {
 
-    Route::get('/index', 'Home\IndexController@index');
-
-    Route::get('/detail', 'Home\ArticleController@detail');
-
+    Route::get('/', 'Home\IndexController@index');
+    //详情页面
+    Route::get('/detail/{id}', 'Home\DetailController@detail')->where('id', '[0-9]+');;
+    //文章
+    Route::get('/article', 'Home\ArticleController@article');
+    //资源
     Route::get('/resource', 'Home\ResourceController@resource');
-
+    //时光
     Route::get('/timeline', 'Home\TimeLineController@timeline');
-
+    //关于我
     Route::get('/about', 'Home\AboutController@about');
-
 
 
 });
@@ -39,6 +40,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['middleware'=>'admin'], function() {
 
+        Route::get('/signOut', 'Admin\LoginController@signOut');
         //登录后的首页
         Route::get('/', 'Admin\IndexController@index');
         //文章
@@ -49,6 +51,25 @@ Route::group(['prefix' => 'admin'], function () {
         Route::resource('/navigation', 'Admin\NavigationController');
         //资源
         Route::resource('/resource', 'Admin\ResourceController');
+        //时光
+        Route::resource('/timeline', 'Admin\TimeLineController');
+        //回收文章
+        Route::resource('/recoveryArticle', 'Admin\RecycleArticleController');
+        //资源回收
+        Route::resource('/recycling', 'Admin\RecyclingController');
+        //系统日志
+        Route::resource('/adminlogo', 'Admin\AdminLogoController');
+        //系统日志
+        Route::resource('/links', 'Admin\LinksController');
+        //博主信息
+        Route::resource('/personalInfo', 'Admin\PersonalInfoController');
+        //公告
+        Route::resource('/notice', 'Admin\NoticeController');
+        //还原
+        Route::any('/recovery', 'Admin\CommonController@recovery');
+        //全部用户
+        Route::resource('/user', 'Admin\UserController');
+
         //上传插件
         Route::any('/uploadCover/{filename?}', 'Admin\CommonController@uploadCover');
 

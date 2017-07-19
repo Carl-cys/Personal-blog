@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Article;
+use App\Models\Links;
 use App\Models\Navigation;
 use App\Models\Resource;
 use Illuminate\Http\Request;
@@ -31,6 +32,9 @@ class CommonController extends Controller
                 break;
             case 'mogo_resource':
                 $public = Resource::findOrFail($data['id']);
+                break;
+            case 'mogo_links':
+                $public = Links::findOrFail($data['id']);
                 break;
         }
 
@@ -100,4 +104,37 @@ class CommonController extends Controller
             }
         }
     }
+    public function recovery( Request $request )
+    {
+        $id = $request->input('id');
+        $tablename = $request->input('tablename');
+
+        switch( $tablename ){
+            case 'mogo_article':
+                $public = Article::findOrFail($id);
+                break;
+            case 'mogo_resource':
+                $public = Resource::findOrFail($id);
+                break;
+            case 'mogo_links':
+                $public = Links::findOrFail($id);
+                break;
+        }
+
+        $public->deleted_status = 0;
+
+        if( $public->save() ){
+            $data = [
+                'status' => 1,
+                'msg'    => '还原成功'
+            ];
+        } else {
+            $data = [
+                'status' => 0,
+                'msg'    => '还原失败'
+            ];
+        }
+        return $data;
+    }
+
 }

@@ -54,6 +54,7 @@ class LoginController extends Controller
                     $request->session()->put('last_login_ip', $res->last_login_ip);
                     $request->session()->put('last_login_time', $res->last_login_time);
                     $request->session()->put('login_num', $num);
+                    $request->session()->put('nickname', $data->nickname);
 
                     //写入登录日志表中
                     //写入登录日志
@@ -112,4 +113,15 @@ class LoginController extends Controller
             'msg' => $msg,
         ];
     }
+
+    public function signOut()
+    {
+        if ( Auth::check() ) {
+
+            Auth::logout();
+            return redirect('/admin/signOut');
+        }
+
+        return back()->withInput()->with(['fail'=>'您没有登录！']);
+  }
 }

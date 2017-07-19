@@ -138,7 +138,7 @@
         });
         /*-删除*/
         function cate_del(obj,id){
-            layer.confirm('确认要删除吗？',function(index){
+            layer.confirm('确认要加入回收站吗？',function(index){
                 //发异步删除数据
                 var index = layer.load(2);
                 $.ajax({

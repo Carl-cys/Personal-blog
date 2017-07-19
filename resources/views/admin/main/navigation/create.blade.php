@@ -2,14 +2,13 @@
 @section('content')
 
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-        <legend>添加导航</legend>
+        <legend>添加友情</legend>
         <div class="layui-field-box">
-            {{--<div id="articleContent" class="">--}}
             <form class="layui-form " action="">
                 <div class="layui-form-item">
                     <label class="layui-form-label">名称</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" required="" lay-verify="required" placeholder="请输入导航名称" autocomplete="off" class="layui-input">
+                        <input type="text" name="title" required="" lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -70,6 +69,7 @@
                             layer.close( index );
 
                         }else if(data.status == 1){
+                            layer.load(2);
                             //添加成功
                             layer.msg(data.msg, {icon: 6,time:1000});
 

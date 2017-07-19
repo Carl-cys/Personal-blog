@@ -18,6 +18,7 @@ class ArticleController extends Controller
     public function index( Request $request )
     {
         $articles = Article::select()->orderBy('id', 'desc')
+            ->where( 'deleted_status', '=', 0 )
             ->where(function($query) use ($request){
                 //关键字
                 $keyword = $request->input('keyword');
@@ -197,26 +198,21 @@ class ArticleController extends Controller
                 'msg'    => '请刷新页面后重试'
             ];
         }
-        $article = Article::find($id);
-        if($article->img){
 
-            unlink('.'.$article->img);
+        $status = Article::find( $id );
+
+        $status->deleted_status = 1;
+        if( $status->save() ){
+            $data = [
+                'status' => 1,
+                'msg'    => '添加回收站成功'
+            ];
+        } else {
+            $data = [
+                'status' => 0,
+                'msg'    => '添加回收站失败'
+            ];
         }
-
-            if(Article::destroy([$id])){
-                //删除成功
-                $data = [
-                    'status' => 1,
-                    'msg'    => '删除成功'
-                ];
-            } else {
-                //删除失败
-                $data = [
-                    'status' => 2,
-                    'msg'    => '删除失败'
-                ];
-            }
-
 
         return $data;
     }

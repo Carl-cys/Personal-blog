@@ -96,6 +96,7 @@
                             layer.msg(data.msg, {icon: 5,time:1000});
                             //所属名称不能为空
                         }else if(data.status == 0){
+                            layer.load(2);
                             layer.msg(data.msg, {icon: 6,time:1000});
 
                             location.href = '/admin/resource';

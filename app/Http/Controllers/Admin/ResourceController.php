@@ -18,6 +18,7 @@ class ResourceController extends Controller
     public function index( Request $request )
     {
         $resource = Resource::select()->orderBy('id', 'desc')
+            ->where( 'deleted_status', '=', 0 )
             ->where(function($query) use ($request){
                 //关键字
                 $keyword = $request->input('keyword');
@@ -67,7 +68,7 @@ class ResourceController extends Controller
     }
 
     /**
-     * 文章添加
+     * 资源添加
      * @param Request $request
      * @return array 返回给ajax
      */
@@ -145,11 +146,13 @@ class ResourceController extends Controller
         $res->abstract      = $data['abstract'];
         $res->demo_address  = $data['demo_address'];
         $res->download_url  = $data['download_url'];
-        $res->img           = $data['img'];
+//        $res->img           = $data['img'];
         $res->author        = $data['author'];
 
         if( $res->img !== $data['img'] ){
-            unlink('.'.$res->img);
+            if($res->img){
+                unlink('.'.$res->img);
+            }
             $res->img       = $data['img'];
         }
 
@@ -172,7 +175,7 @@ class ResourceController extends Controller
     }
 
     /**
-     * 删除文章
+     * 删除资源
      * @param $id
      */
     public function destroy($id)
@@ -185,24 +188,19 @@ class ResourceController extends Controller
         }
 
         $res = Resource::find($id);
-        if($res->img){
-            unlink('.'.$res->img);
-        }
 
-        if(Resource::destroy([$id])){
-            //删除成功
+        $res->deleted_status = 1;
+        if( $res->save() ){
             $data = [
                 'status' => 1,
-                'msg'    => '删除成功'
+                'msg'    => '添加回收站成功'
             ];
         } else {
-            //删除失败
             $data = [
-                'status' => 2,
-                'msg'    => '删除失败'
+                'status' => 0,
+                'msg'    => '添加回收站失败'
             ];
         }
-
 
         return $data;
     }

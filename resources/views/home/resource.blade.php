@@ -2,6 +2,7 @@
 
 @section('style')
     <link href="{{asset('/templates/home/css/resource.css')}}" rel="stylesheet" />
+
 @endsection
 @section('hero')
     <section id="hero" class="scrollme">
@@ -37,107 +38,38 @@
 @section('content')
     <section id="services">
         <div class="blog-body" style="margin-top: -140px;">
-            <div class="blog-container">
-                <blockquote class="layui-elem-quote sitemap layui-breadcrumb shadow">
-                    <a href="home.html" title="网站首页">网站首页</a>
+            <div class="blog-container" style="margin-top: 130px;">
+                <blockquote class="sitemap layui-elem-quote layui-breadcrumb shadow" style="visibility: visible;">
+                    <a href="/" title="网站首页">网站首页<span class="layui-box">&gt;</span></a>
                     <a><cite>资源分享</cite></a>
                 </blockquote>
                 <div class="blog-main">
                     <div class="blog-main">
                         <div class="resource-main">
+                            @foreach($resource as $res)
                             <div class="resource shadow">
                                 <div class="resource-cover">
-                                    <a href="javascript:layer.msg(&#39;这里填演示地址&#39;)" target="_blank">
-                                        <img src="../images/cover/201703051349045432.jpg" alt="时光轴" />
+                                    <a href="@if($res->demo_address)  {{$res->demo_address}}@else javascript:layer.msg(&#39;不好意思暂时没有演示地址&#39;)  @endif" target="_blank">
+                                        <img src="{{$res->img}}" alt="{{$res->title}}" />
                                     </a>
                                 </div>
-                                <h1 class="resource-title"><a href="javascript:layer.msg(&#39;这里填演示地址&#39;)" target="_blank">时光轴</a></h1>
-                                <p class="resource-abstract">本博客使用的时光轴的源码，手工打造！</p>
+                                <h1 class="resource-title"><a href="@if($res->demo_address)  {{$res->demo_address}}@else javascript:layer.msg(&#39;不好意思暂时没有演示地址&#39;)  @endif" target="_blank">{{$res->title}}</a></h1>
+                                <p class="resource-abstract">{{$res->abstract}}</p>
                                 <div class="resource-info">
-                                    <span class="category"><a href="javascript:layer.msg(&#39;这里跳转到相应分类&#39;)"><i class="fa fa-tags fa-fw"></i>&nbsp;源码</a></span>
-                                    <span class="author"><i class="fa fa-user fa-fw"></i>Absolutely</span>
+                                    <span class="category"><i class="fa fa-tags fa-fw"></i>&nbsp;{{$res->created_at}}</span>
+                                    <span class="author"><i class="fa fa-user fa-fw"></i>{{$res->abstract}}</span>
                                     <div class="clear"></div>
                                 </div>
                                 <div class="resource-footer">
-                                    <a class="layui-btn layui-btn-small layui-btn-primary" href="javascript:layer.msg(&#39;这里填演示地址&#39;)" target="_blank"><i class="fa fa-eye fa-fw"></i>演示</a>
-                                    <a class="layui-btn layui-btn-small layui-btn-primary" href="javascript:layer.msg(&#39;这里填下载地址&#39;)" target="_blank"><i class="fa fa-download fa-fw"></i>下载</a>
+                                    <a class="layui-btn layui-btn-small layui-btn-primary" href="@if($res->demo_address)  {{$res->demo_address}}@else javascript:layer.msg(&#39;不好意思暂时没有演示地址&#39;)  @endif" target="_blank"><i class="fa fa-eye fa-fw"></i>演示</a>
+                                    <a class="layui-btn layui-btn-small layui-btn-primary" href="{{$res->download_url}}" target="_blank"><i class="fa fa-download fa-fw"></i>下载</a>
                                 </div>
                             </div>
-                            <div class="resource shadow">
-                                <div class="resource-cover">
-                                    <a href="javascript:layer.msg(&#39;这里填演示地址&#39;)" target="_blank">
-                                        <img src="../images/cover/201703051349045432.jpg" alt="时光轴" />
-                                    </a>
-                                </div>
-                                <h1 class="resource-title"><a href="javascript:layer.msg(&#39;这里填演示地址&#39;)" target="_blank">时光轴</a></h1>
-                                <p class="resource-abstract">本博客使用的时光轴的源码，手工打造！</p>
-                                <div class="resource-info">
-                                    <span class="category"><a href="javascript:layer.msg(&#39;这里跳转到相应分类&#39;)"><i class="fa fa-tags fa-fw"></i>&nbsp;源码</a></span>
-                                    <span class="author"><i class="fa fa-user fa-fw"></i>Absolutely</span>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="resource-footer">
-                                    <a class="layui-btn layui-btn-small layui-btn-primary" href="javascript:layer.msg(&#39;这里填演示地址&#39;)" target="_blank"><i class="fa fa-eye fa-fw"></i>演示</a>
-                                    <a class="layui-btn layui-btn-small layui-btn-primary" href="javascript:layer.msg(&#39;这里填下载地址&#39;)" target="_blank"><i class="fa fa-download fa-fw"></i>下载</a>
-                                </div>
-                            </div>
-                            <div class="resource shadow">
-                                <div class="resource-cover">
-                                    <a href="javascript:layer.msg(&#39;这里填演示地址&#39;)" target="_blank">
-                                        <img src="../images/cover/201703051349045432.jpg" alt="时光轴" />
-                                    </a>
-                                </div>
-                                <h1 class="resource-title"><a href="javascript:layer.msg(&#39;这里填演示地址&#39;)" target="_blank">时光轴</a></h1>
-                                <p class="resource-abstract">本博客使用的时光轴的源码，手工打造！</p>
-                                <div class="resource-info">
-                                    <span class="category"><a href="javascript:layer.msg(&#39;这里跳转到相应分类&#39;)"><i class="fa fa-tags fa-fw"></i>&nbsp;源码</a></span>
-                                    <span class="author"><i class="fa fa-user fa-fw"></i>Absolutely</span>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="resource-footer">
-                                    <a class="layui-btn layui-btn-small layui-btn-primary" href="javascript:layer.msg(&#39;这里填演示地址&#39;)" target="_blank"><i class="fa fa-eye fa-fw"></i>演示</a>
-                                    <a class="layui-btn layui-btn-small layui-btn-primary" href="javascript:layer.msg(&#39;这里填下载地址&#39;)" target="_blank"><i class="fa fa-download fa-fw"></i>下载</a>
-                                </div>
-                            </div>
-                            <div class="resource shadow">
-                                <div class="resource-cover">
-                                    <a href="javascript:layer.msg(&#39;这里填演示地址&#39;)" target="_blank">
-                                        <img src="../images/cover/201703051349045432.jpg" alt="时光轴" />
-                                    </a>
-                                </div>
-                                <h1 class="resource-title"><a href="javascript:layer.msg(&#39;这里填演示地址&#39;)" target="_blank">时光轴</a></h1>
-                                <p class="resource-abstract">本博客使用的时光轴的源码，手工打造！</p>
-                                <div class="resource-info">
-                                    <span class="category"><a href="javascript:layer.msg(&#39;这里跳转到相应分类&#39;)"><i class="fa fa-tags fa-fw"></i>&nbsp;源码</a></span>
-                                    <span class="author"><i class="fa fa-user fa-fw"></i>Absolutely</span>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="resource-footer">
-                                    <a class="layui-btn layui-btn-small layui-btn-primary" href="javascript:layer.msg(&#39;这里填演示地址&#39;)" target="_blank"><i class="fa fa-eye fa-fw"></i>演示</a>
-                                    <a class="layui-btn layui-btn-small layui-btn-primary" href="javascript:layer.msg(&#39;这里填下载地址&#39;)" target="_blank"><i class="fa fa-download fa-fw"></i>下载</a>
-                                </div>
-                            </div>
-                            <div class="resource shadow">
-                                <div class="resource-cover">
-                                    <a href="javascript:layer.msg(&#39;这里填演示地址&#39;)" target="_blank">
-                                        <img src="../images/cover/201703051349045432.jpg" alt="时光轴" />
-                                    </a>
-                                </div>
-                                <h1 class="resource-title"><a href="javascript:layer.msg(&#39;这里填演示地址&#39;)" target="_blank">时光轴</a></h1>
-                                <p class="resource-abstract">本博客使用的时光轴的源码，手工打造！</p>
-                                <div class="resource-info">
-                                    <span class="category"><a href="javascript:layer.msg(&#39;这里跳转到相应分类&#39;)"><i class="fa fa-tags fa-fw"></i>&nbsp;源码</a></span>
-                                    <span class="author"><i class="fa fa-user fa-fw"></i>Absolutely</span>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="resource-footer">
-                                    <a class="layui-btn layui-btn-small layui-btn-primary" href="javascript:layer.msg(&#39;这里填演示地址&#39;)" target="_blank"><i class="fa fa-eye fa-fw"></i>演示</a>
-                                    <a class="layui-btn layui-btn-small layui-btn-primary" href="javascript:layer.msg(&#39;这里填下载地址&#39;)" target="_blank"><i class="fa fa-download fa-fw"></i>下载</a>
-                                </div>
-                            </div>
+
                             <!-- 清除浮动 -->
                             <div class="clear"></div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -148,75 +80,6 @@
 
 @section('js')
 
-    <script type="text/javascript">
-
-        var resizeHero = function () {
-            var hero = $(".cover,.heightblock"),
-                    window1 = $(window);
-            hero.css({
-                "height": window1.height()
-            });
-        };
-
-        resizeHero();
-
-        $(window).resize(function () {
-            resizeHero();
-        });
-
-    </script>
-    {{--<script src="{{asset('/templates/home/js/home.js}}"></script>--}}
-    <script src="{{asset('/templates/home/js/plugins.min.js')}}"></script><!-- Bootstrap core and concatenated plugins always load here -->
-    <script src="{{asset('/templates/home/js/jquery.flexslider-min.js')}}"></script><!-- Flexslider plugin -->
-    <script src="{{asset('/templates/home/js/scripts.js')}}"></script><!-- Theme scripts -->
-    <script src="{{asset('/templates/home/js/jquery.fancybox.pack.js')}}"></script>
-
-    <script type="text/javascript">
-        $('#intro').find('img').each(function(){
-            var alt = this.alt;
-
-            if (alt){
-                $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
-            }
-
-            $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
-        });
-        (function($){
-            $('.fancybox').fancybox();
-        })(jQuery);
-    </script>
-    <!-- Initiate flexslider plugin -->
-    <script type="text/javascript">
-        $(document).ready(function($) {
-            $('.flexslider').flexslider({
-                animation: "fade",
-                prevText: "",
-                nextText: "",
-                directionNav: true
-            });
-
-        });
-
-
-    </script>
-    <script>
-
-
-        (function(){
-            var bp = document.createElement('script');
-            var curProtocol = window.location.protocol.split(':')[0];
-            if (curProtocol === 'https') {
-                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-            }
-            else {
-                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-            }
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(bp, s);
-        })();
-
-
-    </script>
 
 
 

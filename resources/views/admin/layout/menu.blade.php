@@ -19,20 +19,20 @@
     <div class="layui-header">
         <div class="ht-console">
             <div class="ht-user">
-                <img src="{{asset('templates/admin/images/Logo_40.png')}}" />
-                <a class="ht-user-name">超级管理员</a>
+                <img src="{{$user->pic}}" />
+                <a class="ht-user-name">管理员</a>
             </div>
         </div>
         <span class="sys-title">Mogo后台管理系统</span>
         <ul class="ht-nav">
             <li class="ht-nav-item">
-                <a target="_blank" href="javascript:;">前台入口</a>
+                <a target="_blank" href="/">前台入口</a>
             </li>
             <li class="ht-nav-item">
                 <a href="javascript:;" id="individuation"><i class="fa fa-tasks fa-fw" style="padding-right:5px;"></i>个性化</a>
             </li>
             <li class="ht-nav-item">
-                <a href="javascript:;"><i class="fa fa-power-off fa-fw"></i>注销</a>
+                <a href="{{url('admin/signOut')}}"><i class="fa fa-power-off fa-fw"></i>注销</a>
             </li>
         </ul>
     </div>
@@ -48,16 +48,16 @@
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" data-url="{{url('/admin/article')}}" data-id="1">文章管理</a></dd>
                         <dd><a href="javascript:;" data-url="{{url('/admin/resource')}}" data-id="2">资源管理</a></dd>
-                        <dd><a href="javascript:;" data-url="datalist.html" data-id="3">时光轴管理</a></dd>
+                        <dd><a href="javascript:;" data-url="{{url('/admin/timeline')}}" data-id="3">时光轴管理</a></dd>
                         <dd><a href="javascript:;">笔记本管理</a></dd>
-                        <dd><a href="javascript:;" data-url="datalist.html" data-id="4">文章回收站</a></dd>
-                        <dd><a href="javascript:;">资源回收站</a></dd>
+                        <dd><a href="javascript:;" data-url="{{url('/admin/recoveryArticle')}}" data-id="4">文章回收站</a></dd>
+                        <dd><a href="javascript:;" data-id="5" data-url="{{url('/admin/recycling')}}">资源回收站</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;"><i class="fa fa-user"></i>用户管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">全部用户</a></dd>
+                        <dd><a href="javascript:;" data-url="{{url('/admin/user')}}" data-id="6">全部用户</a></dd>
                         <dd><a href="javascript:;">黑名单管理</a></dd>
                     </dl>
                 </li>
@@ -71,10 +71,10 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;"><i class="fa fa-wrench"></i>扩展管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">友情链接</a></dd>
-                        <dd><a href="javascript:;">博主信息</a></dd>
+                        <dd><a href="javascript:;" data-url="{{url('/admin/links')}}" data-id="1325">友情链接</a></dd>
+                        <dd><a href="javascript:;" data-url="{{url('/admin/personalInfo')}}" data-id="1324">博主信息</a></dd>
+                        <dd><a href="javascript:;" data-url="{{url('/admin/notice')}}" data-id="5">网站公告</a></dd>
                         <dd><a href="javascript:;">网站信息</a></dd>
-                        <dd><a href="javascript:;" data-url="datalist.html" data-id="5">网站公告</a></dd>
                         <dd><a href="javascript:;" data-url="datalist.html" data-id="6">更新日志</a></dd>
                         <dd><a href="javascript:;" data-url="datalist.html" data-id="7">留言管理</a></dd>
                     </dl>
@@ -91,7 +91,7 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;"><i class="fa fa-info-circle"></i>其他信息</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">操作日志</a></dd>
+                        <dd><a href="javascript:;" data-url="{{url('/admin/adminlogo')}}" data-id="1235">操作日志</a></dd>
                     </dl>
                 </li>
             </ul>
