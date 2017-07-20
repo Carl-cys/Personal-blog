@@ -36,7 +36,7 @@
             <div class="layui-form-item" style="position:relative;">
                 <label class="layui-form-label">封面</label>
                 <div class="layui-input-inline">
-                    <input id="articleCoverSrc" name="img" type="hidden">
+                    <input id="articleCoverSrc" name="img" type="hidden" value="{{$user->pic}}">
                     <img id="articleCoverImg" class="img-cover"
                          @if($user->pic)
                          src = "{{$user->pic}}"
@@ -112,7 +112,16 @@
                             layer.load(2);
                             layer.msg(data.msg, {icon: 6,time:1000});
                             location.href = '/admin/user';
-                        }
+                        } else if(data.status == 4){
+                            layer.load(2);
+                                layer.alert(data.msg, {
+                                    skin: 'layui-layer-molv' //样式类名
+                                    ,closeBtn: 0
+                                }, function(){
+                                    location.href = '/admin/signOut';
+                                });
+
+                    }
                     }
                 });
                 return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。

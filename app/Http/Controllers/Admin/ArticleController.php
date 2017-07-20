@@ -156,7 +156,10 @@ class ArticleController extends Controller
         $article->author        = $res['author'];
 
         if( $article->img !== $res['img'] ){
-            unlink('.'.$article->img);
+            if($article->img !== ''){
+                unlink('.'.$article->img);
+            }
+
             $article->img       = $res['img'];
         }
         //如果存在就代表选中了

@@ -124,8 +124,9 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+//        dd(Auth::user());
         $data = json_decode( $request->json, true );
-//        if( $data['nickname'] == $request->session()->get('nickname') ){
+//        if( $data['nickname'] == Auth::user()->nickname ){
 //            //一旦失败清除所有认证后加入到用户 session 的数据
 //            Auth::logout();
 //            return redirect('/admin/login');
@@ -151,9 +152,12 @@ class UserController extends Controller
             }
             //判断图片并删除原来的图片
             if( $user->pic !== $data['img'] ){
-                if($user->pic){
+                if($user->pic !== ''){
+
                     unlink('.'.$user->pic);
                 }
+                $user->pic      = $data['img'];
+            } else {
                 $user->pic      = $data['img'];
             }
 
@@ -161,6 +165,13 @@ class UserController extends Controller
             $user->email = $data['email'];
             //执行添加
             if( $user->save() ){
+                if( $data['nickname'] == Auth::user()->nickname ){
+                //一旦失败清除所有认证后加入到用户 session 的数据
+                    return $suc = [
+                        'status' => 4,
+                        'msg'    => '修改成功,请重新登录'
+                    ];
+                }
                 $suc = [
                     'status' => 2,
                     'msg'    => '修改成功啦'
@@ -187,4 +198,5 @@ class UserController extends Controller
     {
         //
     }
+
 }

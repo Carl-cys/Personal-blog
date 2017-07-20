@@ -17,6 +17,8 @@ class CreateMogoNavigationTable extends Migration
             $table->increments('id');
             $table->string('title','50')->default('')->comment('标题');
             $table->string('url')->default('')->comment('网址');
+            $table->string('motto')->default('')->comment('格言');
+            $table->string('img')->default('')->comment('主图');
             $table->string('desc')->default('')->comment('描述');
             $table->integer('order')->default('50')->comment('排序');
             $table->timestamps();

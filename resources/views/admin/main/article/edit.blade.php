@@ -130,7 +130,7 @@
             var index;
             var token = $("input[name='_token']").val();
             layui.upload({
-                url: '/admin/uploadCover',
+                url: '/admin/uploadCover/article',
                 elem: '#articleCoverInput',
                 method: 'post',
                 before: function (input) {

@@ -10,7 +10,6 @@
 
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
         <legend>添加管理员</legend>
-
         {{--<div id="articleContent" class="">--}}
         <form class="layui-form " action="">
             <div class="layui-form-item">
