@@ -35,7 +35,7 @@
     <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
         <img src="{{ asset('/templates/home/default/img/close.png') }}" alt="Close">
     </div>
-
+{{--{{dd()}}--}}
     <ul class="sb-menu">
         @foreach( $navigation as $nav )
         <li><a href="{{ $nav->url }}" class="animsition-link" title="Home">{{$nav->title}}</a></li>
@@ -92,9 +92,38 @@
 
 
     <!-- ============================ 图片 =========================== -->
-    @yield('hero')
 
-            <!-- ============================ 内容 =========================== -->
+    @section('hero')
+        <section id="hero" class="scrollme">
+            <div class="container-fluid element-img" style="background: url(https://odu38kv7q.qnssl.com/index.jpg) no-repeat center center fixed;background-size: cover">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center" style="height: 619px;">
+                        <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                            <div>
+
+                                <h2>
+                                    <a href="https://www.iphpt.com/#intro" class="more scrolly">
+                                        命定的局限尽可永在，不屈的挑战却不可须臾或缺！
+                                    </a>
+                                </h2>
+                                <p></p>
+                                <h2></h2>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- // .col-md-12 -->
+                </div>
+                <div class="herofade beige-dk" style="opacity: 0;"></div>
+            </div>
+        </section>
+        <!-- Height spacing helper -->
+        <div class="heightblock" style="height: 619px;"></div>
+        <!-- // End height spacing helper -->
+        @show
+
+
+                <!-- ============================ 内容 =========================== -->
 
     @yield('content')
     <section id="statement">

@@ -1,16 +1,13 @@
 @extends('admin.layout.layout')
 @section('style')
-
         <!-- 配置文件 -->
 <script type="text/javascript" src="{{asset('templates/admin/plugin/ueditor/ueditor.config.js')}}"></script>
 <!-- 编辑器源码文件 -->
 <script type="text/javascript" src="{{asset('templates/admin/plugin/ueditor/ueditor.all.js')}}"></script>
 @endsection
 @section('content')
-
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
         <legend>编辑管理员</legend>
-
         {{--<div id="articleContent" class="">--}}
         <form class="layui-form " action="">
             <input type="hidden" name="id" value="{{$user->id}}">
