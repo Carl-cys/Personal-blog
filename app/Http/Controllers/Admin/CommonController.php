@@ -137,4 +137,12 @@ class CommonController extends Controller
         return $data;
     }
 
+    public function msg($number, $msg)
+    {
+        $error['status'] = $number;
+        $error['msg'] = $msg;
+        
+        return $error;
+    }
+
 }

@@ -52,7 +52,6 @@ class FqsenResolver
      * @param Context $context
      *
      * @return Fqsen
-     * @throws \InvalidArgumentException when type is not a valid FQSEN.
      */
     private function resolvePartialStructuralElementName($type, Context $context)
     {

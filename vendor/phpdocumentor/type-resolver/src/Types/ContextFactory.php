@@ -32,7 +32,7 @@ final class ContextFactory
     /**
      * Build a Context given a Class Reflection.
      *
-     * @param \Reflector $reflector
+     * @param \ReflectionClass $reflector
      *
      * @see Context for more information on Contexts.
      *

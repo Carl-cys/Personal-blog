@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Navigation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\CommonController;
 
 class NavigationController extends Controller
 {
@@ -45,9 +46,27 @@ class NavigationController extends Controller
     {
         $res = json_decode( $request->json, true );
 
+        if ( !$res['title'] ) {
+            return $this->msg(0, '名称不能为空！');
+
+        }elseif ( !$res['url'] ) {
+            return $this->msg(0, 'url不能为空！');
+
+        }elseif ( !$res['motto'] ) {
+            return $this->msg(0, '格言不能为空！');
+
+        }elseif ( !$res['img'] ) {
+            return $this->msg(0, '请上传封面！');
+
+        }elseif ( !$res['desc'] ) {
+            return $this->msg(0, '描述不能为空！');
+
+        }
+
         $navquery = Navigation::where( 'title', '=', $res['title'] )->first();
 
         //如果数据不存在就添加存在就提示
+        
         if( !$navquery ){
             $nav = new Navigation();
             $nav->title = $res['title'];
@@ -75,6 +94,7 @@ class NavigationController extends Controller
                 'status' => 2,
                 'msg'    => '请重新输入啦，名称存在哦！',
             ];
+
         }
 
     }
@@ -175,5 +195,12 @@ class NavigationController extends Controller
             ];
         }
         return $data;
+    }
+
+    public function msg($number, $msg)
+    {
+        $error['status'] = $number;
+        $error['msg']    = $msg;
+        return $error;
     }
 }
