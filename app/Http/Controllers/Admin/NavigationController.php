@@ -8,7 +8,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\CommonController;
 
 class NavigationController extends Controller
-{
+{   
+
+    protected $msg;
+
+    public function __construct()
+    {
+        $this->msg = new CommonController;
+
+    }
+
     /**
      * 前台首页
      * @param Request $request
@@ -47,19 +56,13 @@ class NavigationController extends Controller
         $res = json_decode( $request->json, true );
 
         if ( !$res['title'] ) {
-            return $this->msg(0, '名称不能为空！');
+            return $this->msg->msg(0, '名称不能为空！');
 
         }elseif ( !$res['url'] ) {
-            return $this->msg(0, 'url不能为空！');
-
-        }elseif ( !$res['motto'] ) {
-            return $this->msg(0, '格言不能为空！');
-
-        }elseif ( !$res['img'] ) {
-            return $this->msg(0, '请上传封面！');
+            return $this->msg->msg->msg(0, 'url不能为空！');
 
         }elseif ( !$res['desc'] ) {
-            return $this->msg(0, '描述不能为空！');
+            return $this->msg->msg(0, '描述不能为空！');
 
         }
 
@@ -76,24 +79,16 @@ class NavigationController extends Controller
             //执行添加
             if( $nav->save() ){
                 //成功
-                $data = [
-                    'status' => 1,
-                    'msg'    => '添加成功',
-                ];
+                $data = $this->msg->msg(1, '添加成功');
 
             } else {
                 //失败
-                $data = [
-                    'status' => 0,
-                    'msg'    => '添加失败',
-                ];
+                $data = $this->msg->msg(0, '添加失败');
             }
             return $data;
+
         } else {
-            return $data = [
-                'status' => 2,
-                'msg'    => '请重新输入啦，名称存在哦！',
-            ];
+            return $this->msg->msg(2, '请重新输入啦，名称存在哦！');
 
         }
 
@@ -149,23 +144,15 @@ class NavigationController extends Controller
             $navup = Navigation::where( 'id', '=', $id )->update( $res );
             //成功
             if( $navup ){
-                $data = [
-                    'status' => 1,
-                    'msg'    => '修改成功',
-                ];
+                $data = $this->msg->msg(1, '修改成功');
             } else {
-                $data = [
-                    'status' => 0,
-                    'msg'    => '修改失败',
-                ];
+                $data = $this->msg->msg(0, '修改失败');
             }
             return $data;
         } else {
             //返回给ajax
-            return $data = [
-                'status' => 2,
-                'msg'    => '请重新输入啦，名称存在哦！',
-            ];
+            return $data = $this->msg->msg(2, '请重新输入啦，名称存在哦！');
+
         }
     }
 
@@ -176,31 +163,17 @@ class NavigationController extends Controller
     public function destroy($id)
     {
         if(!$id){
-            return $data = [
-                'status' => 0,
-                'msg'    => '请刷新页面后重试'
-            ];
+            return $this->msg->msg(0, '请刷新页面后重试');
         }
         if(Navigation::destroy([$id])){
           //删除成功
-            $data = [
-                'status' => 1,
-                'msg'    => '删除成功'
-            ];
+          $data = $this->msg->msg(1, '删除成功');
+
         } else {
             //删除失败
-            $data = [
-                'status' => 2,
-                'msg'    => '删除失败'
-            ];
+            $data = $this->msg->msg(2, '删除失败');
         }
         return $data;
     }
 
-    public function msg($number, $msg)
-    {
-        $error['status'] = $number;
-        $error['msg']    = $msg;
-        return $error;
-    }
 }
