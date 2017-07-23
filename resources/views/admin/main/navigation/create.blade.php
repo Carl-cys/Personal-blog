@@ -17,23 +17,7 @@
                         <input type="text" name="url" lay-verify="required" placeholder="请输入URL" autocomplete="off" class="layui-input">
                     </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">格言</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="motto" lay-verify="required" placeholder="请输入格言" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item" style="position:relative;">
-                    <label class="layui-form-label">封面</label>
-                    <div class="layui-input-inline">
-                        <input id="articleCoverSrc" name="img" type="hidden">
-                        <img id="articleCoverImg" class="img-cover" src="{{asset('/templates/admin/images/cover_default.jpg')}}"  style='border: 1px solid #ddd; margin-left:30px' width="200" alt="封面">
-                    </div>
-                    <div class="layui-input-inline" style="position:absolute;bottom:0;margin-left: 40px">
-                        <input type="file" id="articleCoverInput" name="file" class="layui-upload-file">
-                        {{--</div>--}}
-                    </div>
-                </div>
+                
                 <div class="layui-form-item">
                     <label class="layui-form-label">描述</label>
                     <div class="layui-input-block">
