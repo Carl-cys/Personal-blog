@@ -11,12 +11,11 @@
     <!--全局样式表-->
     <link href="{{asset('/templates/home/css/global.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('/templates/home/css/all.css') }}" media="screen" type="text/css">
-{{--    <link rel="stylesheet" href="{{ asset('/templates/home/css/xcode.css') }}" type="text/css">--}}
+    {{--    <link rel="stylesheet" href="{{ asset('/templates/home/css/xcode.css') }}" type="text/css">--}}
     <link rel="stylesheet" href="{{ asset('/templates/home/css/jquery.fancybox.css') }}" media="screen" type="text/css">
     <script src="{{ asset('/templates/home/js/push.js') }}"></script>
     <script src="{{asset('templates/admin/plugin/jq/jquery-1.10.2.min.js')}}"></script>
     <script src="{{asset('templates/admin/plugin/layui/layui.js')}}"></script>
-
     <!--font-awesome-->
     <link href="{{asset('/templates/home/plug/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" />
     <!-- 本页样式表 -->
@@ -35,17 +34,19 @@
     <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
         <img src="{{ asset('/templates/home/default/img/close.png') }}" alt="Close">
     </div>
-{{--{{dd()}}--}}
+    {{--{{dd()}}--}}
     <ul class="sb-menu">
-        @foreach( $navigation as $nav )
-        <li><a href="{{ $nav->url }}" class="animsition-link" title="Home">{{$nav->title}}</a></li>
-        @endforeach
+        @forelse( $navigation as $nav )
+            <li><a href="{{ $nav->url }}" class="animsition-link" title="Home">{{$nav->title}}</a></li>
+        @empty
+        @endforelse
         <li>
             <a class="sb-toggle-submenu">友情<span class="sb-caret"></span></a>
             <ul class="sb-submenu">
-                @foreach($links as $link)
-                <li><a href="{{$link->link}}" target="_blank" class="link">{{$link->name}}</a></li>
-                @endforeach
+                @forelse($links as $link)
+                    <li><a href="{{$link->link}}" target="_blank" class="link">{{$link->name}}</a></li>
+                @empty
+                @endforelse
             </ul>
         </li>
 
@@ -92,39 +93,10 @@
 
 
     <!-- ============================ 图片 =========================== -->
-
     @section('hero')
-        <section id="hero" class="scrollme">
-            <div class="container-fluid element-img" style="background: url(https://odu38kv7q.qnssl.com/index.jpg) no-repeat center center fixed;background-size: cover">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center" style="height: 619px;">
-                        <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                            <div>
 
-                                <h2>
-                                    <a href="https://www.iphpt.com/#intro" class="more scrolly">
-                                        命定的局限尽可永在，不屈的挑战却不可须臾或缺！
-                                    </a>
-                                </h2>
-                                <p></p>
-                                <h2></h2>
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- // .col-md-12 -->
-                </div>
-                <div class="herofade beige-dk" style="opacity: 0;"></div>
-            </div>
-        </section>
-        <!-- Height spacing helper -->
-        <div class="heightblock" style="height: 619px;"></div>
-        <!-- // End height spacing helper -->
-        @show
-
-
-                <!-- ============================ 内容 =========================== -->
-
+    @show
+            <!-- ============================ 内容 =========================== -->
     @yield('content')
     <section id="statement">
         <div class="container text-center wow fadeInUp" data-wow-delay="0.5s" style="visibility: hidden; animation-delay: 0.5s; animation-name: none;">
@@ -137,12 +109,6 @@
 @section('footer')
     <footer>
         <div class="container">
-            {{--<div>--}}
-                {{--<p>欢迎加入交流群(群号):440221268</p>--}}
-            {{--</div>--}}
-            {{--<div>--}}
-                {{--<p>我的阿里云9折购买推荐码为:y2jcyp</p><i class="icon-facebook"></i>--}}
-            {{--</div>--}}
         </div>
         <div class="container">
             <div class="copy">
@@ -152,21 +118,19 @@
                 </p>
 
             </div>
-            <div class="social">
-                <ul>
+            {{--<div class="social">--}}
+            {{--<ul>--}}
 
-                    <li><a href="https://github.com/Yela528/laravel-5-myblog" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
-
-
-                    <li><a href="https://www.iphpt.com/#" title="阿里云推荐码" target="_blank"><i class="icon-qq"></i></a>&nbsp;</li>
+            {{--<li><a href="https://github.com/Yela528/laravel-5-myblog" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>--}}
 
 
-                    <li><a href="http://weibo.com/ylsc633?refer_flag=1001030101_&is_hot=1" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+            {{--<li><a href="https://www.iphpt.com/#" title="阿里云推荐码" target="_blank"><i class="icon-qq"></i></a>&nbsp;</li>--}}
 
-                </ul>
-                {{--<script src="./叶落山城秋_files/z_stat.php" language="JavaScript"></script><script src="./叶落山城秋_files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=1256842383" target="_blank" title="站长统计">站长统计</a>--}}
 
-            </div>
+            {{--<li><a href="http://weibo.com/ylsc633?refer_flag=1001030101_&is_hot=1" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>--}}
+
+            {{--</ul>--}}
+            {{--</div>--}}
 
             <div class="clearfix"> </div>
         </div>
@@ -187,8 +151,6 @@
     <div class="blog-mask animated layui-hide"></div>
 @show
 
-
-
 @yield('js')
 <script src="{{asset('/templates/home/js/global.js')}}"></script><!-- Bootstrap core and concatenated plugins always load here -->
 <script src="{{asset('/templates/home/js/plugins.min.js')}}"></script><!-- Bootstrap core and concatenated plugins always load here -->
@@ -196,8 +158,7 @@
 <script src="{{asset('/templates/home/js/scripts.js')}}"></script><!-- Theme scripts -->
 <script src="{{asset('/templates/home/js/jquery.fancybox.pack.js')}}"></script>
 <script type="text/javascript">
-
-    var resizeHero = function () {
+    var resizeHero = function() {
         var hero = $(".cover,.heightblock"),
                 window1 = $(window);
         hero.css({
@@ -207,28 +168,21 @@
 
     resizeHero();
 
-    $(window).resize(function () {
+    $(window).resize(function() {
         resizeHero();
     });
-
-</script>
-
-<script type="text/javascript">
-    $('#intro').find('img').each(function(){
+    $('#intro').find('img').each(function() {
         var alt = this.alt;
 
-        if (alt){
+        if (alt) {
             $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
         }
 
         $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
     });
-    (function($){
+    (function($) {
         $('.fancybox').fancybox();
     })(jQuery);
-</script>
-<!-- Initiate flexslider plugin -->
-<script type="text/javascript">
     $(document).ready(function($) {
         $('.flexslider').flexslider({
             animation: "fade",
@@ -239,25 +193,17 @@
 
     });
 
-
-</script>
-<script>
-
-
-    (function(){
+    (function() {
         var bp = document.createElement('script');
         var curProtocol = window.location.protocol.split(':')[0];
         if (curProtocol === 'https') {
             bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        }
-        else {
+        } else {
             bp.src = 'http://push.zhanzhang.baidu.com/push.js';
         }
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(bp, s);
     })();
-
-
 </script>
 
 </html>

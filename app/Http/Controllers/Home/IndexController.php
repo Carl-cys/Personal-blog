@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\Article;
+use App\Models\Figure;
 use App\Models\Links;
 use App\Models\Navigation;
 use App\Models\Notice;
@@ -14,7 +15,7 @@ use App\Http\Controllers\Controller;
 
 class IndexController extends Controller
 {
-    public function index()
+    public function index( Request $request )
     {
         //文章列表
         $articlelist = $this->articleSorting( 'created_at', 'desc' );
@@ -30,10 +31,38 @@ class IndexController extends Controller
         $info = $this->personalInfo();
         //获取公告
         $notice = $this->notice();
-//dd($info);
-        return view( 'home.index', compact('links', 'info', 'articlelist', 'articleclicks', 'resource', 'timeline', 'notice') );
+        //图片加格言
+       $figure =  Figure::select([ 'url','motto', 'img', 'id' ])->get();
+        $cate = [];
+        foreach($articlelist as $v){
+            $cate[] = $this->getCateNameByCateId($v->cate_id);
+        }
+        return view( 'home.index', compact('cate', 'request', 'figure', 'links', 'info', 'articlelist', 'articleclicks', 'resource', 'timeline', 'notice') );
     }
 
+    /**
+     * 获取分类名称
+     * @param $id
+     * @return string
+     */
+    public function getCateNameByCateId($id)
+    {
+        if($id == 0 ){
+            return '顶级分类';
+        }
+
+        $cate = \App\Models\Category::find($id);
+
+        if(empty($cate)){
+
+            return '无';
+
+        }else{
+
+            return $cate->cate_name;
+
+        }
+    }
     /**
      *  公告
      */

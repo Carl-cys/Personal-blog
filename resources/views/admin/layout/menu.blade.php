@@ -74,6 +74,7 @@
                         <dd><a href="javascript:;" data-url="{{url('/admin/links')}}" data-id="1325">友情链接</a></dd>
                         <dd><a href="javascript:;" data-url="{{url('/admin/personalInfo')}}" data-id="1324">博主信息</a></dd>
                         <dd><a href="javascript:;" data-url="{{url('/admin/notice')}}" data-id="5">网站公告</a></dd>
+                        <dd><a href="javascript:;" data-url="{{url('/admin/figure')}}" data-id="6">网站格言与背景图</a></dd>
                         <dd><a href="javascript:;">网站信息</a></dd>
                         <dd><a href="javascript:;" data-url="datalist.html" data-id="6">更新日志</a></dd>
                         <dd><a href="javascript:;" data-url="datalist.html" data-id="7">留言管理</a></dd>

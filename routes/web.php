@@ -18,15 +18,17 @@ Route::group(['prefix' => 'home'], function () {
 
     Route::get('/', 'Home\IndexController@index');
     //详情页面
-    Route::get('/detail/{id}', 'Home\DetailController@detail')->where('id', '[0-9]+');;
+    Route::get('/detail/{id}', 'Home\DetailController@detail')->where('id', '[0-9]+');
     //文章
-    Route::get('/article', 'Home\ArticleController@article');
+    Route::get('/article/{category?}/{id?}', 'Home\ArticleController@article')->where('category', '[a-z]+')->where('id', '[0-9]+');
     //资源
     Route::get('/resource', 'Home\ResourceController@resource');
     //时光
     Route::get('/timeline', 'Home\TimeLineController@timeline');
     //关于我
     Route::get('/about', 'Home\AboutController@about');
+
+//    Route::get('/article/{id}', 'Home\CategoryController@category');
 
 
 });
@@ -61,6 +63,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::resource('/adminlogo', 'Admin\AdminLogoController');
         //系统日志
         Route::resource('/links', 'Admin\LinksController');
+        //前台格言与图片
+        Route::resource('/figure', 'Admin\FigureController');
         //博主信息
         Route::resource('/personalInfo', 'Admin\PersonalInfoController');
         //公告
