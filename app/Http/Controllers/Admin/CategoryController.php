@@ -32,7 +32,7 @@ class CategoryController extends Controller
         //遍历数组 调整分类名称
         $cates =  self::trer($cate);
         if(!empty($cates)){
-            return view('admin.main.Category.index', compact('cates','request','catearr'));
+            return view('admin.main.category.index', compact('cates','request','catearr'));
         }
     }
 

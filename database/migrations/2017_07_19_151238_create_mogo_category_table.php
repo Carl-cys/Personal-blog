@@ -17,7 +17,7 @@ class CreateMogoCategoryTable extends Migration
         Schema::create('category', function (Blueprint $table) {
             $table->increments('id');
             $table->string('cate_name','50')->unique()->comment('分类名');
-            $table->integer('parent_id')->unique()->comment('分类id');
+            $table->integer('parent_id')->comment('分类id');
             $table->string('path','50')->default('')->comment('路径');
             $table->string('cate_desc')->default('')->comment('描述');
             $table->string('seo_desc')->default('')->comment('seo用的描述');
