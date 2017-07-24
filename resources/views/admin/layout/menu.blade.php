@@ -49,7 +49,7 @@
                         <dd><a href="javascript:;" data-url="{{url('/admin/article')}}" data-id="1">文章管理</a></dd>
                         <dd><a href="javascript:;" data-url="{{url('/admin/resource')}}" data-id="2">资源管理</a></dd>
                         <dd><a href="javascript:;" data-url="{{url('/admin/timeline')}}" data-id="3">时光轴管理</a></dd>
-                        <dd><a href="javascript:;">笔记本管理</a></dd>
+                        <dd><a href="javascript:;" data-url="{{url('/admin/about')}}" data-id="7">关于我</a></dd>
                         <dd><a href="javascript:;" data-url="{{url('/admin/recoveryArticle')}}" data-id="4">文章回收站</a></dd>
                         <dd><a href="javascript:;" data-id="5" data-url="{{url('/admin/recycling')}}">资源回收站</a></dd>
                     </dl>
