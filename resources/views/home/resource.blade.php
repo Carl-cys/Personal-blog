@@ -1,4 +1,4 @@
-@extends('Home.layouts.layout')
+@extends('home.layouts.layout')
 
 @section('style')
     <link href="{{asset('/templates/home/css/resource.css')}}" rel="stylesheet" />

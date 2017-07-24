@@ -47,6 +47,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', 'Admin\IndexController@index');
         //文章
         Route::resource('/article', 'Admin\ArticleController');
+		//关于我
+        Route::resource('/about', 'Admin\AboutController');
         //分类
         Route::resource('/category', 'Admin\CategoryController');
         //导航

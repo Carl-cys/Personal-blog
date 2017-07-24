@@ -1,4 +1,4 @@
-@extends('Home.layouts.layout')
+@extends('home.layouts.layout')
 
 @section('style')
     <link href="{{asset('/templates/home/css/home.css')}}" rel="stylesheet" />
@@ -50,7 +50,7 @@
                     <!-- 网站公告提示 -->
                     <div class="home-tips shadow">
                         <i style="float:left;line-height:20px;" class="fa fa-volume-up"></i>
-                        <div class="home-tips-container" style="height: 23px">
+                        <div class="home-tips-container" style="height: 29px; margin-top: -5px;margin-bottom: -5px;">
                             {{--                            @if(empty)--}}
                             @forelse($notice as $not)
                                 <span style="color: {{$not->color}}">{!! $not->content!!}</span>
@@ -95,7 +95,7 @@
                     <div class="blog-main-right">
                         <div class="blogerinfo shadow">
                             <div class="blogerinfo-figure">
-                                <img src="{{$info->img}}" alt="Absolutely" style="width: 200px"/>
+                                <img src="{{$info->img}}" alt="Absolutely" style="width:100px;height:100px"/>
                             </div>
                             <p class="blogerinfo-nickname">{{$info->name}}</p>
                             <p class="blogerinfo-introduce">{{$info->profile}}</p>
