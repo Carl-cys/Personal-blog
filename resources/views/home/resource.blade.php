@@ -59,8 +59,8 @@
                                     <h1 class="resource-title"><a href="@if($res->demo_address)  {{$res->demo_address}}@else javascript:layer.msg(&#39;不好意思暂时没有演示地址&#39;)  @endif" target="_blank">{{$res->title}}</a></h1>
                                     <p class="resource-abstract">{{$res->abstract}}</p>
                                     <div class="resource-info">
-                                        <span class="category"><i class="fa fa-tags fa-fw"></i>&nbsp;{{$res->created_at}}</span>
-                                        <span class="author"><i class="fa fa-user fa-fw"></i>{{$res->abstract}}</span>
+                                        <span class="category" style=" margin-bottom: -50px;" ><i class="fa fa-tags fa-fw"></i>&nbsp;{{$res->created_at}}</span>
+                                        <span class="author" style="margin-top: -1px;" ><i class="fa fa-user fa-fw"></i>{{$res->abstract}}</span>
                                         <div class="clear"></div>
                                     </div>
                                     <div class="resource-footer">
