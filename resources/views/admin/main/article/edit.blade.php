@@ -89,6 +89,14 @@
                         </script>
                     </div>
                 </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: 100px">
+                        发布时间
+                    </label>
+                    <div class="layui-inline">
+                        <input class="layui-input" name="created_at" placeholder="自定义日期格式" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{{ $articleinfo->created_at }}">
+                    </div>
+                </div>
                 <input type="hidden" value="{{$articleinfo->id}}" name="id">
                 <div class="layui-form-item">
                     <div class="layui-input-block">
@@ -102,7 +110,7 @@
 @endsection
 @section('js')
     <script>
-        layui.use(['form','layer','upload'], function(){
+        layui.use(['form','layer','upload','laydate'], function(){
             $ = layui.jquery;
             var form = layui.form()
                     ,layer = layui.layer

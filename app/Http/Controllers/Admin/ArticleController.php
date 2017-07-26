@@ -75,7 +75,6 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $res = json_decode( $request->json, true );
-
         $article = new Article();
         $article->cate_id       = $res['cate_id'];
         $article->title         = $res['title'];
@@ -156,6 +155,8 @@ class ArticleController extends Controller
         $article->keyword       = $res['keyword'];
         $article->content       = $res['content'];
         $article->author        = $res['author'];
+        $article->created_at    = $res['created_at'];
+
 
         if( $article->img !== $res['img'] ){
             if($article->img !== ''){
