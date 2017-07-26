@@ -1,6 +1,6 @@
 <?php 
  return  array (
-  'title' => '大蒜博客',
+  'title' => '我的博客',
   'keyword' => '博客,个人博客',
   'desc' => '这是一个充满情怀的博客！',
   'copyright' => '我的博客版权所有',
@@ -14,5 +14,8 @@
   'smtp_pwd' => '123456',
   'recipient_email' => 'test@163.com',
   'webswitch' => 'OFF',
-  'logo' => 'Uploads/logo/20170726\\2017072608355234796.jpg',
+  'logo' => 'https://odu38kv7q.qnssl.com/nice.png',
+  'github' => 'https://odu38kv7q.qnssl.com/nice.png',
+  'sina-weibo' => 'https://odu38kv7q.qnssl.com/nice.png',
+  'cooperation' => 'php-garlic | Carl-cys—协同开发',
 );

@@ -80,6 +80,18 @@ class DatabaseSeeder extends Seeder
                 'name'=>'logo',
                 'value'=>'https://odu38kv7q.qnssl.com/nice.png',
             ],
+            [
+                'name'=>'github',
+                'value'=>'https://odu38kv7q.qnssl.com/nice.png',
+            ],
+            [
+                'name'=>'sina-weibo',
+                'value'=>'https://odu38kv7q.qnssl.com/nice.png',
+            ],
+            [
+                'name'=>'cooperation',
+                'value'=>'php-garlic | Carl-cys——协同开发',
+            ],
 
         ];
 

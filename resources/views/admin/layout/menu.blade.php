@@ -23,7 +23,7 @@
                 <a class="ht-user-name">管理员</a>
             </div>
         </div>
-        <span class="sys-title">Mogo后台管理系统</span>
+        <span class="sys-title">{{ config('config.inc.title') }}后台管理系统</span>
         <ul class="ht-nav">
             <li class="ht-nav-item">
                 <a target="_blank" href="/">前台入口</a>

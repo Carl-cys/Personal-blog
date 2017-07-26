@@ -91,6 +91,30 @@
                                 <input type="text" name="number" autocomplete="off" placeholder="京ICP备00000000号" class="layui-input" value="{{ $data['number'] }}">
                             </div>
                         </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width:100px;">
+                                <span class='x-red'>*</span>GitHub
+                            </label>
+                            <div class="layui-input-block">
+                                <input type="text" name="github" autocomplete="off" placeholder="Github地址" class="layui-input" value="{{ $data['github'] }}">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width:100px;">
+                                <span class='x-red'>*</span>Sina
+                            </label>
+                            <div class="layui-input-block">
+                                <input type="text" name="sina-weibo" autocomplete="off" placeholder="新浪微博地址" class="layui-input" value="{{ $data['sina-weibo'] }}">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width:100px;">
+                                <span class='x-red'>*</span>协作者
+                            </label>
+                            <div class="layui-input-block">
+                                <input type="text" name="cooperation" autocomplete="off" placeholder="协作者" class="layui-input" value="{{ $data['cooperation'] }}">
+                            </div>
+                        </div>
                         <div class="layui-form-item layui-form-text">
                             <label class="layui-form-label">
                                 <span class='x-red'>*</span>统计代码

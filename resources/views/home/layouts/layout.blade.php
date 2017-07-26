@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="@yield('desc', config('config.inc.desc'))">
     <meta name="keywords" content="@yield('keyword', config('config.inc.keyword'))">
-    <link rel="Shortcut Icon" href="{{ asset('/templates/home/img/nice.png') }}" type="image/ico">
+    <link rel="Shortcut Icon" href="{{ asset('/templates/home/img/favicon.ico') }}" type="image/ico">
     <!--全局样式表-->
     <link href="{{asset('/templates/home/css/global.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('/templates/home/css/all.css') }}" media="screen" type="text/css">
@@ -67,16 +67,16 @@
                 <!-- Nav logo -->
                 <div class="logo">
                     <a href="{{url('/home')}}" title="{{ config('config.inc.title') }}" class="animsition-link">
-                        <img src="{{ url(config('config.inc.logo')) }}" alt="logo" width="35px;">
+                        <img src="{{ url(config('config.inc.logo')) }}" alt="logo" width="45px;" style="border-radius: 50%;">
                     </a>
                 </div>
                 <nav>
                     <ul class="nav">
-                        <li><a href="{{url('/home')}}" class="animsition-link">Mogo大大</a></li>
+                        <li><a href="{{url('/home')}}" class="animsition-link">{{ config('config.inc.title') }}</a></li>
 
-                        <li><a href="https://github.com/Carl-cys" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                        <li><a href="{{ config('config.inc.github') }}" title="Github" target="_blank"><i class="icon-github"></i></a></li>
 
-                        <li><a href="" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                        <li><a href="{{ config('config.inc.sina-weibo') }}" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
                         <li class="nolink"><span>Welcome!</span></li>
                     </ul>
                 </nav>
@@ -117,19 +117,16 @@
                 </p>
 
             </div>
-            {{--<div class="social">--}}
-            {{--<ul>--}}
+            <h3 style="text-align: center;color:#fff;">{{ config('config.inc.cooperation') }}</h3>
+            <div class="social">
+            <ul>
 
-            {{--<li><a href="https://github.com/Yela528/laravel-5-myblog" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>--}}
+            <li><a href="{{ config('config.inc.github') }}" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
 
+            <li><a href="{{ config('config.inc.sina-weibo') }}" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
 
-            {{--<li><a href="https://www.iphpt.com/#" title="阿里云推荐码" target="_blank"><i class="icon-qq"></i></a>&nbsp;</li>--}}
-
-
-            {{--<li><a href="http://weibo.com/ylsc633?refer_flag=1001030101_&is_hot=1" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>--}}
-
-            {{--</ul>--}}
-            {{--</div>--}}
+            </ul>
+            </div>
 
             <div class="clearfix"> </div>
         </div>
