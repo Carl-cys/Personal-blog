@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Mogo后台管理系统</title>
+    <title>{{ config('config.inc.title') }}-后台管理系统</title>
     <link rel="shortcut icon" href="{{asset('templates/admin/images/Logo_40.png')}}" type="image/x-icon">
     <!-- layui.css -->
     <link href="{{asset('templates/admin/plugin/layui/css/layui.css')}}" rel="stylesheet" />
