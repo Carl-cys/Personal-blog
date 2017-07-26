@@ -84,6 +84,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post ('/email', 'Admin\SettingsController@email');
         Route::post ('/webswitch', 'Admin\SettingsController@webSwitch');
         Route::post ('/custom', 'Admin\SettingsController@custom');
+        Route::post ('/uploadsLogo', 'Admin\SettingsController@logo');
 
 
     });

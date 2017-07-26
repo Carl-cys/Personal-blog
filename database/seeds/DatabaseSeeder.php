@@ -76,6 +76,10 @@ class DatabaseSeeder extends Seeder
                 'name'=>'webswitch',
                 'value'=>'OFF',
             ],
+            [
+                'name'=>'logo',
+                'value'=>'https://odu38kv7q.qnssl.com/nice.png',
+            ],
 
         ];
 

@@ -1,6 +1,6 @@
 @extends('admin.layout.layout')
 @section('style')
-
+    <link rel="stylesheet" href="{{ asset('templates/admin/css/logo.css') }}"  media="all">
     <!-- 配置文件 -->
     <script type="text/javascript" src="{{asset('templates/admin/plugin/ueditor/ueditor.config.js')}}"></script>
     <!-- 编辑器源码文件 -->
@@ -12,6 +12,7 @@
         .layui-form-switch{
             width: 50px;
         }
+
     </style>
 @endsection
 @section('content')
@@ -32,6 +33,7 @@
             @endif
             <ul class="layui-tab-title">
                 <li class="layui-this">网站设置</li>
+                <li>LOGO</li>
                 <li>邮件设置</li>
                 <li>关闭网站</li>
                 <li>其它设置</li>
@@ -105,7 +107,24 @@
                     </form>
                     <div style="height:100px;"></div>
                 </div>
+                <div class="layui-tab-item">
+                    <form class="layui-form layui-form-pane" action="{{url('admin/custom')}}" method="post">
+                        {{csrf_field()}}
+                        <div class="layui-form-item">
+                            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+                                <legend>LOGO</legend>
+                            </fieldset>
 
+                            <div class="site-demo-upload">
+                                <img id="LAY_demo_upload" src="{{ url($data['logo']) }}">
+                                <div class="site-demo-upbar">
+                                    <input type="file" name="file" class="layui-upload-file" id="logo">
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
                 <div class="layui-tab-item">
                     <form class="layui-form layui-form-pane" action="email" method="post">
                         {{csrf_field()}}
@@ -234,7 +253,8 @@
 @section('js')
     <script src="{{asset('templates/admin/plugin/layui/layui.js')}}"></script>
     <script>
-        layui.use(['element', 'layer','form'], function () {
+
+        layui.use(['element', 'layer','form','upload'], function () {
             $ = layui.jquery;//jquery
             lement = layui.element();//面包导航
             layer = layui.layer;//弹出层
@@ -286,6 +306,36 @@
 //                layer.alert("保存成功", {icon: 6});
 //                return false;
 //            });
+
+            layui.upload({
+                url: '/admin/uploadsLogo',
+                ext: 'jpg|png|gif|jpeg',
+                elem: '#logo', //指定原始元素，默认直接查找class="layui-upload-file"
+                method: 'post', //上传接口的http类型
+                before: function(input){
+                    var data = {'_token':'{{ csrf_token() }}' };
+                    extra_data(input,data);
+
+                },
+                success: function(res){
+                    if ( res.status == 1) {
+                        LAY_demo_upload.src = res.url;
+                        layer.msg(res.msg);
+                    } else {
+                        layer.msg(res.msg);
+                    }
+
+                }
+            });
+
+            //图片上传自定义参数封装
+            function extra_data(input,data){
+                var item=[];
+                $.each(data,function(k,v){
+                    item.push('<input type="hidden" name="'+k+'" value="'+v+'">');
+                })
+                $(input).after(item.join(''));
+            }
 
         });
     </script>

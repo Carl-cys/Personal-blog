@@ -5,10 +5,21 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Config;
+use App\Http\Controllers\Admin\CommonController;
 
 class SettingsController extends Controller
 {
+    protected $msg;
+
+    public function __construct()
+    {
+        $this->msg = new CommonController;
+
+    }
+
     /**
+     * 更新网站信息
+     *
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
@@ -35,6 +46,8 @@ class SettingsController extends Controller
 
 
     /**
+     * 更新邮件配置信息
+     *
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -71,6 +84,12 @@ class SettingsController extends Controller
         return back()->with(['error' => $res]);
     }
 
+    /**
+     * 添加自定义配置信息
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function custom(Request $request)
     {
         //添加自定义配置信息
@@ -84,12 +103,64 @@ class SettingsController extends Controller
         $config->value = $data['value'];
         $save = $config->save();
 
-        $res    = $this->webConfig();
+        $res  = $this->webConfig();
 
         if ( $res and $save ) {
             return back()->with(['success' => $res]);
         }
         return back()->with(['error' => $res]);
+    }
+
+    public function logo(Request $request)
+    {
+        if ( $request->isMethod('post') ) {
+
+            //判断是否有图片上传
+            if ( $request->hasFile('file') ) {
+
+                $file =  $request  ->   file('file');
+                //获取图片原始名称
+                $clientName = $file-> getClientOriginalName();
+                //获取临时文件夹中的文件名称
+                $tmpName    = $file-> getFileName();
+                //上传文件原始路径
+                $realPath   = $file-> getRealPath();
+                //上传文件后缀
+                $entension  = $file-> getClientOriginalExtension();
+                //文件类型
+                $fileType   = $file-> getMimeType();
+                //定义新文件名称
+                $newName    = date('Ymdhis').rand(00000,99999).'.'.$entension;
+                //移动文件
+                $path = $file -> move('Uploads/logo/'.date('Ymd'), $newName);
+
+                if ( Config::where('name', '=', 'logo')->update(['value' => $path]) ) {
+
+                    if ( $this->webConfig() ) {
+
+                        $res = $this->msg->msg(1, '上传成功！');
+                        $res['url'] = "".url($path)."";
+
+                        return json_encode($res);;
+                    }
+
+                    $res = $this->msg->msg(0, '上传成功！,配置文件写入失败！');
+                    $res['url'] = "".url($path)."";
+
+                    return json_encode($res);;
+
+                }
+
+                $res = $this->msg->msg(0, '上传失败！');
+                return json_encode($res);
+            }
+
+            $res = $this->msg->msg(0, '没有文件上传！');
+            return json_encode($res);
+
+        }
+
+
     }
 
     /**
@@ -118,7 +189,9 @@ class SettingsController extends Controller
     }
 
     /**
-     * @param $data
+     * 更新网站配置信息公共函数
+     *
+     * @param  $data
      * @return string
      */
     public function webUpdate($data)

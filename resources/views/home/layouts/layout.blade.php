@@ -66,8 +66,8 @@
             <div class="container">
                 <!-- Nav logo -->
                 <div class="logo">
-                    <a href="{{url('/home')}}" title="iphpt" class="animsition-link">
-                        <img src="https://odu38kv7q.qnssl.com/nice.png" alt="logo" width="35px;">
+                    <a href="{{url('/home')}}" title="{{ config('config.inc.title') }}" class="animsition-link">
+                        <img src="{{ url(config('config.inc.logo')) }}" alt="logo" width="35px;">
                     </a>
                 </div>
                 <nav>
