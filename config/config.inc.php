@@ -1,6 +1,6 @@
 <?php 
  return  array (
-  'title' => '我的博客',
+  'title' => '大蒜博客',
   'keyword' => '博客,个人博客',
   'desc' => '这是一个充满情怀的博客！',
   'copyright' => '我的博客版权所有',

@@ -1,6 +1,8 @@
 @extends('home.layouts.layout')
 
 @section('title', $detail->title.'-' )
+@section('desc', $detail->abstract )
+@section('keyword', $detail->keyword )
 
 @section('style')
     <link href="{{asset('/templates/home/css/detail.css')}}" rel="stylesheet" />

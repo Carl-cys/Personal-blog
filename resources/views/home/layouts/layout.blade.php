@@ -5,8 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mogo大叔的PHP个人技术博客，分享一些技术文章，分享一些琐碎">
-    <meta name="keywords" content="Mogo大叔、个人博客、技术博客、Linux、php、ubuntu、laravel博客、laravel、php学习、iphpt、iphp、phpt、it里做php的">
+    <meta name="description" content="@yield('desc', config('config.inc.desc'))">
+    <meta name="keywords" content="@yield('keyword', config('config.inc.keyword'))">
     <link rel="Shortcut Icon" href="{{ asset('/templates/home/img/nice.png') }}" type="image/ico">
     <!--全局样式表-->
     <link href="{{asset('/templates/home/css/global.css')}}" rel="stylesheet" />

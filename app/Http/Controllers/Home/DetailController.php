@@ -28,7 +28,7 @@ class DetailController extends Controller
      */
     public function articleDetail( $id )
     {
-        $detail = Article::find( $id, ['title','clicks','content','author','created_at','id'] );
+        $detail = Article::find( $id, ['title','clicks','content','author','created_at','id', 'keyword', 'abstract'] );
         return $detail;
     }
 }

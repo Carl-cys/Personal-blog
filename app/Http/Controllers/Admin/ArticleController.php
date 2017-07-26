@@ -80,6 +80,7 @@ class ArticleController extends Controller
         $article->cate_id       = $res['cate_id'];
         $article->title         = $res['title'];
         $article->abstract      = $res['abstract'];
+        $article->keyword       = $res['keyword'];
         $article->content       = $res['content'];
         $article->img           = $res['img'];
         $article->author        = $res['author'];
@@ -152,6 +153,7 @@ class ArticleController extends Controller
         $article->cate_id       = $res['cate_id'];
         $article->title         = $res['title'];
         $article->abstract      = $res['abstract'];
+        $article->keyword       = $res['keyword'];
         $article->content       = $res['content'];
         $article->author        = $res['author'];
 

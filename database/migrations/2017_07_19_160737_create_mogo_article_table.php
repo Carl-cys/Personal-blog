@@ -17,6 +17,7 @@ class CreateMogoArticleTable extends Migration
         Schema::create('article', function (Blueprint $table) {
             $table->increments('id');
             $table->string('abstract')->default('')->comment('文章摘要');
+            $table->string('keyword')->default('')->comment('文章关键词');
             $table->string('title','50')->default('')->comment('文章标题');
             $table->integer('cate_id')->default(0)->comment('分类id');
             $table->integer('clicks')->default(0)->comment('浏览数');
