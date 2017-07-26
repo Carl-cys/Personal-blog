@@ -31,10 +31,10 @@ class SettingsController extends Controller
             $config = $this->webUpdate( $request->all() );
             //写入网站配置信息
             $res    = $this->webConfig();
-            if ( $res and $config ) {
-                return back()->with(['success' => $res]);
+            if ( $res['status'] == 1 and $config ) {
+                return back()->with(['success' => $res['msg']]);
             }
-            return back()->with(['error' => $res]);
+            return back()->with(['error' => $res['msg']]);
 
         }
 
@@ -58,10 +58,10 @@ class SettingsController extends Controller
 
         $res    = $this->webConfig();
 
-        if ( $res and $config ) {
-            return back()->with(['success' => $res]);
+        if ( $res['status'] == 1 and $config ) {
+            return back()->with(['success' => $res['msg']]);
         }
-        return back()->with(['error' => $res]);
+        return back()->with(['error' => $res['msg']]);
 
     }
 
@@ -78,10 +78,10 @@ class SettingsController extends Controller
 
         $res    = $this->webConfig();
 
-        if ( $res and $config ) {
-            return back()->with(['success' => $res]);
+        if ( $res['status'] == 1 and $config ) {
+            return back()->with(['success' => $res['msg']]);
         }
-        return back()->with(['error' => $res]);
+        return back()->with(['error' => $res['msg']]);
     }
 
     /**
@@ -105,10 +105,10 @@ class SettingsController extends Controller
 
         $res  = $this->webConfig();
 
-        if ( $res and $save ) {
-            return back()->with(['success' => $res]);
+        if ( $res['status'] == 1 and $save ) {
+            return back()->with(['success' => $res['msg']]);
         }
-        return back()->with(['error' => $res]);
+        return back()->with(['error' => $res['msg']]);
     }
 
     public function logo(Request $request)
@@ -136,18 +136,20 @@ class SettingsController extends Controller
 
                 if ( Config::where('name', '=', 'logo')->update(['value' => $path]) ) {
 
-                    if ( $this->webConfig() ) {
+                    $webConfig = $this->webConfig();
+
+                    if ( $webConfig['status'] == 1 ) {
 
                         $res = $this->msg->msg(1, '上传成功！');
                         $res['url'] = "".url($path)."";
 
-                        return json_encode($res);;
+                        return json_encode($res);
                     }
 
                     $res = $this->msg->msg(0, '上传成功！,配置文件写入失败！');
                     $res['url'] = "".url($path)."";
 
-                    return json_encode($res);;
+                    return json_encode($res);
 
                 }
 
@@ -181,10 +183,10 @@ class SettingsController extends Controller
         //写入网站信息
         if ( !file_put_contents($path, $str) ) {
 
-            return '保存成功，配置文件写入失败!';
+            return $this->msg->msg(0, '保存成功，配置文件写入失败!');
         }
 
-        return '修改成功';
+       return $this->msg->msg(1, '保存成功!');
 
     }
 

@@ -14,5 +14,5 @@
   'smtp_pwd' => '123456',
   'recipient_email' => 'test@163.com',
   'webswitch' => 'OFF',
-  'logo' => 'Uploads/logo/20170726\\2017072606000039682.jpg',
+  'logo' => 'Uploads/logo/20170726\\2017072608355234796.jpg',
 );
