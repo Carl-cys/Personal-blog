@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN" class="js flexbox flexboxlegacy canvas canvastext no-touch indexeddb hashchange history draganddrop rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage applicationcache sb-init" style="overflow-y: hidden;"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Mogo</title>
+    <title>{{ config('config.inc.title') }}</title>
     <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -101,7 +101,7 @@
     <section id="statement">
         <div class="container text-center wow fadeInUp" data-wow-delay="0.5s" style="visibility: hidden; animation-delay: 0.5s; animation-name: none;">
             <div class="row">
-                <p>当你能力不能满足你的野心的时候,你就该沉下心来学习</p>
+                <p>{{ config('config.inc.text') }}</p>
             </div>
         </div>
     </section>
@@ -113,8 +113,7 @@
         <div class="container">
             <div class="copy">
                 <p>
-                    ©<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>Copyright©2017 Mogo Design By LY
-                    粤ICP备17088469号
+                    ©<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>{{ config('config.inc.copyright') }}-{{ config('config.inc.number') }}
                 </p>
 
             </div>

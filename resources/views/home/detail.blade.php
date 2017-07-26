@@ -27,7 +27,7 @@
                                 <span>浏览：{{$detail->clicks}}</span>
                                 <span>评论：17</span>
                             </div>
-                            {!! $detail->content !!}}
+                            {!! $detail->content !!}
                         </div>
                         <!-- 评论区域 -->
                         {{--<div class="blog-module shadow" style="box-shadow: 0 1px 8px #a6a6a6;">--}}
