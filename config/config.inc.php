@@ -15,7 +15,9 @@
   'recipient_email' => 'test@163.com',
   'webswitch' => 'OFF',
   'logo' => 'https://odu38kv7q.qnssl.com/nice.png',
-  'github' => 'https://odu38kv7q.qnssl.com/nice.png',
-  'sina-weibo' => 'https://odu38kv7q.qnssl.com/nice.png',
-  'cooperation' => 'php-garlic | Carl-cys—协同开发',
+  'github' => 'https://github.com/php-garlic/',
+  'sina-weibo' => 'https://weibo.com',
+  'cooperation' => 'php-garlic | Carl-cys——协同开发',
+  'qq' => '1102729771',
+  'email' => 'php_garlic@163.com',
 );

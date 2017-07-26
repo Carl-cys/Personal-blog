@@ -82,15 +82,23 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name'=>'github',
-                'value'=>'https://odu38kv7q.qnssl.com/nice.png',
+                'value'=>'https://github.com/php-garlic/',
             ],
             [
                 'name'=>'sina-weibo',
-                'value'=>'https://odu38kv7q.qnssl.com/nice.png',
+                'value'=>'https://weibo.com',
             ],
             [
                 'name'=>'cooperation',
                 'value'=>'php-garlic | Carl-cys——协同开发',
+            ],
+            [
+                'name'=>'qq',
+                'value'=>'1102729771',
+            ],
+            [
+                'name'=>'email',
+                'value'=>'php_garlic@163.com',
             ],
 
         ];

@@ -102,10 +102,10 @@
                             <p class="blogerinfo-location"><i class="fa fa-location-arrow"></i>&nbsp;{{$info->address}}</p>
                             <hr />
                             <div class="blogerinfo-contact">
-                                <a target="_blank" title="QQ交流" href="javascript:layer.msg('启动QQ会话窗口')"><i class="fa fa-qq fa-2x"></i></a>
-                                <a target="_blank" title="给我写信" href="javascript:layer.msg('启动邮我窗口')"><i class="fa fa-envelope fa-2x"></i></a>
-                                <a target="_blank" title="新浪微博" href="javascript:layer.msg('转到你的微博主页')"><i class="fa fa-weibo fa-2x"></i></a>
-                                <a target="_blank" title="码云" href="javascript:layer.msg('转到你的github主页')"><i class="fa fa-git fa-2x"></i></a>
+                                <a target="_blank" title="QQ交流" href="{{ config('config.inc.qq') }}"><i class="fa fa-qq fa-2x"></i></a>
+                                <a target="_blank" title="给我写信" href="{{ config('config.inc.email') }}"><i class="fa fa-envelope fa-2x"></i></a>
+                                <a target="_blank" title="新浪微博" href="{{ config('config.inc.sina-weibo') }}"><i class="fa fa-weibo fa-2x"></i></a>
+                                <a target="_blank" title="Github" href="{{ config('config.inc.github') }}"><i class="fa fa-git fa-2x"></i></a>
                             </div>
                         </div>
                         <div></div><!--占位-->

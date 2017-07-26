@@ -115,6 +115,22 @@
                                 <input type="text" name="cooperation" autocomplete="off" placeholder="协作者" class="layui-input" value="{{ $data['cooperation'] }}">
                             </div>
                         </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width:100px;">
+                                <span class='x-red'>*</span>QQ
+                            </label>
+                            <div class="layui-input-block">
+                                <input type="text" name="qq" autocomplete="off" placeholder="QQ链接地址" class="layui-input" value="{{ $data['qq'] }}">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width:100px;">
+                                <span class='x-red'>*</span>E-mail
+                            </label>
+                            <div class="layui-input-block">
+                                <input type="text" name="email" autocomplete="off" placeholder="email地址" class="layui-input" value="{{ $data['email'] }}">
+                            </div>
+                        </div>
                         <div class="layui-form-item layui-form-text">
                             <label class="layui-form-label">
                                 <span class='x-red'>*</span>统计代码
