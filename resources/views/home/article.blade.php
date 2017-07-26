@@ -1,7 +1,9 @@
 @extends('home.layouts.layout')
+
+@section('title', '文章专栏'.'-' )
+
 @section('style')
     <link href="{{asset('/templates/home/css/article.css')}}" rel="stylesheet" />
-
 @endsection
 
 @section('hero')

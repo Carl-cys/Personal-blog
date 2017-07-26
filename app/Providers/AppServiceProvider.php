@@ -20,7 +20,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         Schema::defaultStringLength(191);
         // 使用闭包型态的视图组件...
         view()->composer('*', function ($view) {
