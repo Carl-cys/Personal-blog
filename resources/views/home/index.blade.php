@@ -143,7 +143,7 @@
                             <div class="blog-module-title">友情链接</div>
                             <ul class="blogroll">
                                 @forelse($links as $link)
-                                    <li><a target="_blank" href="/{{$link->link}}" title="{{$link->name}}">{{$link->name}}</a></li>
+                                    <li><a target="_blank" href="{{$link->link}}" title="{{$link->name}}">{{$link->name}}</a></li>
                                 @empty
                                 @endforelse
                             </ul>

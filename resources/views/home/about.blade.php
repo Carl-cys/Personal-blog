@@ -15,7 +15,7 @@
                                 <div>
 
                                     <h2>
-                                        <a href="https://www.iphpt.com/#intro" class="more scrolly" style="font-size: x-large;">
+                                        <a href="{{ url('home/about') }}/#intro" class="more scrolly" style="font-size: x-large;color:#fff;">
                                             {{$fig->motto}}
                                         </a>
                                     </h2>

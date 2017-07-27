@@ -14,11 +14,11 @@
             }
         },
         //人机验证返回来的token
-        //result_response: function (value) {
-        //    if (value.length < 1) {
-        //        return '请点击人机识别验证';
-        //    }
-        //},
+        result_response: function (value) {
+           if (value.length < 1) {
+               return '请点击人机识别验证';
+           }
+        },
     });
 	
 
@@ -90,13 +90,13 @@
         loginHtml += '<div class="layui-form-item">';
         loginHtml += '<label class="layui-form-label">账号</label>';
         loginHtml += '<div class="layui-input-inline pm-login-input">';
-        loginHtml += '<input type="text" name="nickname" lay-verify="account" placeholder="请输入账号" value="admin" autocomplete="off" class="layui-input">';
+        loginHtml += '<input type="text" name="nickname" lay-verify="account" placeholder="请输入账号" autocomplete="off" class="layui-input">';
         loginHtml += '</div>';
         loginHtml += '</div>';
         loginHtml += '<div class="layui-form-item">';
         loginHtml += '<label class="layui-form-label">密码</label>';
         loginHtml += '<div class="layui-input-inline pm-login-input">';
-        loginHtml += '<input type="password" name="password" lay-verify="passWord" placeholder="请输入密码" value="admin" autocomplete="off" class="layui-input">';
+        loginHtml += '<input type="password" name="password" lay-verify="passWord" placeholder="请输入密码" autocomplete="off" class="layui-input">';
         loginHtml += '</div>';
         loginHtml += '</div>';
         loginHtml += '<div class="layui-form-item">';

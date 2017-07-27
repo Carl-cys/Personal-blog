@@ -106,6 +106,7 @@ class SettingsController extends Controller
         $res  = $this->webConfig();
 
         if ( $res['status'] == 1 and $save ) {
+
             return back()->with(['success' => $res['msg']]);
         }
         return back()->with(['error' => $res['msg']]);
@@ -113,6 +114,7 @@ class SettingsController extends Controller
 
     public function logo(Request $request)
     {
+
         if ( $request->isMethod('post') ) {
 
             //判断是否有图片上传
@@ -120,25 +122,34 @@ class SettingsController extends Controller
 
                 $file =  $request  ->   file('file');
                 //获取图片原始名称
-                $clientName = $file-> getClientOriginalName();
+//                $clientName = $file-> getClientOriginalName();
                 //获取临时文件夹中的文件名称
-                $tmpName    = $file-> getFileName();
+//                $tmpName    = $file-> getFileName();
                 //上传文件原始路径
-                $realPath   = $file-> getRealPath();
+//                $realPath   = $file-> getRealPath();
+                //文件类型
+//                $fileType   = $file-> getMimeType();
                 //上传文件后缀
                 $entension  = $file-> getClientOriginalExtension();
-                //文件类型
-                $fileType   = $file-> getMimeType();
+
                 //定义新文件名称
                 $newName    = date('Ymdhis').rand(00000,99999).'.'.$entension;
                 //移动文件
-                $path = $file -> move('Uploads/logo/'.date('Ymd'), $newName);
+                $file_path  = $file -> move('Uploads/logo/'.date('Ymd'), $newName);
+
+                //拼接路径
+                $path       =  'Uploads/logo/'.date('Ymd').'/'.$newName;
 
                 if ( Config::where('name', '=', 'logo')->update(['value' => $path]) ) {
 
                     $webConfig = $this->webConfig();
 
                     if ( $webConfig['status'] == 1 ) {
+//                        var_dump(file_exists( $request->hidden_logo ));
+                        if ( is_file( $request->hidden_logo ) ) {
+
+                            unlink( $request->hidden_logo );
+                        }
 
                         $res = $this->msg->msg(1, '上传成功！');
                         $res['url'] = "".url($path)."";
@@ -156,6 +167,25 @@ class SettingsController extends Controller
                 $res = $this->msg->msg(0, '上传失败！');
                 return json_encode($res);
             }
+
+            //没有上传文件，判断表单提交的数据
+            if ( $request->logo ) {
+
+                if ( Config::where('name', 'logo')->update(['value' => $request->logo]) ) {
+
+                    $res = $this->webConfig();
+
+                    if ( $res['status'] == 1 ) {
+
+                        return back()->with(['success' => $res['msg']]);
+                    }
+                    return back()->with(['error' => $res['msg']]);
+                }
+            } else {
+
+                return back()->with(['error' => '错误！请不要修改标签的 NAME 名称！']);
+            }
+
 
             $res = $this->msg->msg(0, '没有文件上传！');
             return json_encode($res);

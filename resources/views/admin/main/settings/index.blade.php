@@ -148,20 +148,32 @@
                     <div style="height:100px;"></div>
                 </div>
                 <div class="layui-tab-item">
-                    <form class="layui-form layui-form-pane" action="{{url('admin/custom')}}" method="post">
+                    <form class="layui-form layui-form-pane" action="{{url('admin/uploadsLogo')}}" method="post">
                         {{csrf_field()}}
                         <div class="layui-form-item">
                             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
                                 <legend>LOGO</legend>
                             </fieldset>
-
+                            <div class="layui-form-item">
+                                <input type="hidden" name="hidden-logo" id="hidden-logo" autocomplete="off" placeholder="logo" value="{{ $data['logo'] }}">
+                                <label class="layui-form-label" style="width:100px;">
+                                    <span class='x-red'>*</span>LOGO
+                                </label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="logo" id="logo-input" autocomplete="off" placeholder="logo" class="layui-input" value="{{ $data['logo'] }}">
+                                </div>
+                            </div>
                             <div class="site-demo-upload">
                                 <img id="LAY_demo_upload" src="{{ url($data['logo']) }}">
                                 <div class="site-demo-upbar">
                                     <input type="file" name="file" class="layui-upload-file" id="logo">
                                 </div>
                             </div>
-
+                            <div class="layui-form-item">
+                                <button class="layui-btn" >
+                                    保存
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -348,17 +360,19 @@
 //            });
 
             layui.upload({
-                url: '/admin/uploadsLogo',
+                url: '{{ url('admin/uploadsLogo') }}',
                 ext: 'jpg|png|gif|jpeg',
                 elem: '#logo', //指定原始元素，默认直接查找class="layui-upload-file"
                 method: 'post', //上传接口的http类型
                 before: function(input){
-                    var data = {'_token':'{{ csrf_token() }}' };
+                    var hidden_logo = $('#hidden-logo').val();
+                    var data = {'_token':'{{ csrf_token() }}', 'hidden_logo':hidden_logo };
                     extra_data(input,data);
 
                 },
                 success: function(res){
                     if ( res.status == 1) {
+                        $('#logo-input').val( res.url );
                         LAY_demo_upload.src = res.url;
                         layer.msg(res.msg);
                     } else {
@@ -372,7 +386,7 @@
             function extra_data(input,data){
                 var item=[];
                 $.each(data,function(k,v){
-                    item.push('<input type="hidden" name="'+k+'" value="'+v+'">');
+                    item.push('<input type="hidden" name="'+ k +'" value="'+ v +'">');
                 })
                 $(input).after(item.join(''));
             }

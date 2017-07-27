@@ -14,7 +14,7 @@
   'smtp_pwd' => '123456',
   'recipient_email' => 'test@163.com',
   'webswitch' => 'OFF',
-  'logo' => 'https://odu38kv7q.qnssl.com/nice.png',
+  'logo' => 'Uploads/logo/20170727/2017072711140263864.JPG',
   'github' => 'https://github.com/php-garlic/',
   'sina-weibo' => 'https://weibo.com',
   'cooperation' => 'php-garlic | Carl-cys——协同开发',
