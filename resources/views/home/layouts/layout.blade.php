@@ -113,7 +113,7 @@
         <div class="container">
             <div class="copy">
                 <p>
-                    ©<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>{{ config('config.inc.copyright') }}-{{ config('config.inc.number') }}
+                    ©2017<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>{{ config('config.inc.copyright') }}-{{ config('config.inc.number') }}
                 </p>
 
             </div>
