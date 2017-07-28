@@ -113,7 +113,7 @@ class FigureController extends Controller
 //        $res->img           = $data['img'];
 
         if( $figure->img !== $data['img'] ){
-            if($figure->img){
+            if( is_file($figure->img) ){
                 unlink('.'.$figure->img);
             }
             $figure->img    = $data['img'];

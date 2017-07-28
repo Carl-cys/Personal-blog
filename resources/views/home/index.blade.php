@@ -16,7 +16,7 @@
                             <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
                                 <div>
                                     <h2>
-                                        <a href="javascript:;" class="more scrolly" style="font-size: x-large;">
+                                        <a href="javascript:;" class="more scrolly" style="font-size: x-large;color:#fff;">
                                             {{$fig->motto}}
                                         </a>
                                     </h2>

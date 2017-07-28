@@ -39,7 +39,7 @@
                     <div class="layui-input-inline">
                         <img id="articleCoverImg" class="img-cover"
                              @if($resinfo->img and is_file($resinfo->img))
-                             src = "{{$resinfo->img}}"
+                             src = "{{ url($resinfo->img) }}"
                              @else
                              src="{{asset('/templates/admin/images/cover_default.jpg')}}"
                              @endif

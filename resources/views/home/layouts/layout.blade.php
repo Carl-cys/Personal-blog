@@ -41,7 +41,7 @@
         @empty
         @endforelse
         <li>
-            <a class="sb-toggle-submenu">友情<span class="sb-caret"></span></a>
+            <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
             <ul class="sb-submenu">
                 @forelse($links as $link)
                     <li><a href="{{$link->link}}" target="_blank" class="link">{{$link->name}}</a></li>
@@ -53,7 +53,7 @@
     </ul>
     <!-- Lists in Slidebars -->
     <ul class="sb-menu secondary">
-        <li><a href="https://www.iphpt.com/monthList" class="animsition-link" title="归档">归档</a></li>
+        <li><a href="{{ url('home/monthList') }}" class="animsition-link" title="归档">归档</a></li>
 
         <li><a href="{{url('/home/about')}}" class="animsition-link" title="about">About</a></li>
     </ul>

@@ -15,7 +15,7 @@
                                 <div>
 
                                     <h2>
-                                        <a href="{{ url('home/resource') }}/#intro" class="more scrolly" style="font-size: x-large;">
+                                        <a href="{{ url('home/resource') }}/#intro" class="more scrolly" style="font-size: x-large;color:#fff;">
                                             {{$fig->motto}}
                                         </a>
                                     </h2>
@@ -59,8 +59,8 @@
                                     <h1 class="resource-title"><a href="@if($res->demo_address)  {{$res->demo_address}}@else javascript:layer.msg(&#39;不好意思暂时没有演示地址&#39;)  @endif" target="_blank">{{$res->title}}</a></h1>
                                     <p class="resource-abstract">{{$res->abstract}}</p>
                                     <div class="resource-info">
-                                        <span class="category" style=" margin-bottom: -50px;" ><i class="fa fa-tags fa-fw"></i>&nbsp;{{$res->created_at}}</span>
-                                        <span class="author" style="margin-top: -1px;" ><i class="fa fa-user fa-fw"></i>{{$res->abstract}}</span>
+                                        <span class="category" style=" margin-bottom: -50px;" ><i class="fa fa-clock-o"></i>&nbsp;{{$res->created_at}}</span>
+                                        <span class="author" style="margin-top: -1px;" ><i class="fa fa-tag"></i>{{$res->abstract}}</span>
                                         <div class="clear"></div>
                                     </div>
                                     <div class="resource-footer">

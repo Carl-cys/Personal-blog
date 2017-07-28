@@ -102,7 +102,7 @@
         loginHtml += '<div class="layui-form-item">';
         loginHtml += '<label class="layui-form-label">人机验证</label>';
         loginHtml += '<div class="layui-input-inline pm-login-input">';
-        loginHtml +='<div class="l-captcha" data-callback="getResponse" data-site-key="be12cbdec9ef5bb8bb491ca96f9edd85">  </div> ';
+        loginHtml +='<div class="l-captcha" data-callback="getResponse" data-site-key="94f39a9699cb60ed75f6ca73649e14ca">  </div> ';
 		loginHtml += '<input type="hidden" id="result_response" name="result_response" lay-verify="result_response">';
         loginHtml += '</div>';
         loginHtml += '</div>';

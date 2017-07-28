@@ -18,7 +18,7 @@
                         <div>
 
                             <h2>
-                                <a href="{{ url('home/article') }}/#intro" class="more scrolly"  style="font-size: x-large;">
+                                <a href="{{ url('home/article') }}/#intro" class="more scrolly"  style="font-size: x-large;color:#fff;">
                                     {{$fig->motto}}
                                 </a>
                             </h2>
