@@ -8,13 +8,13 @@
     <section id="hero" class="scrollme">
         @forelse($figure as $fig)
             @if($request->path() == $fig->url)
-                <div class="container-fluid element-img" style="background: url({{$fig->img}}) no-repeat center center fixed;background-size: cover">
+                <div class="container-fluid element-img" style="background: url({{ url($fig->img)}}) no-repeat center center fixed;background-size: cover">
                     <div class="row">
                         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center" style="height: 619px;">
                             <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
                                 <div>
                                     <h2>
-                                        <a href="https://www.iphpt.com/#intro" class="more scrolly" style="font-size: x-large;">
+                                        <a href="{{ url('home/timeline') }}/#intro" class="more scrolly" style="font-size: x-large;color:#fff;">
                                             {{$fig->motto}}
                                         </a>
                                     </h2>

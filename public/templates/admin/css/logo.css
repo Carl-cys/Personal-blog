@@ -1,0 +1,64 @@
+body .layui-layout-admin .site-demo{bottom: 82px; padding: 0;}
+        body .site-demo-nav .layui-nav-item{line-height: 40px}
+        .layui-nav-item .layui-icon{position: relative; font-size: 20px;}
+        .layui-nav-item a cite{padding: 0 10px;}
+        .site-demo .layui-main{margin: 15px; line-height: 22px;}
+        .site-demo-editor{position: absolute; top: 0; bottom: 0; left: 0; width: 50%; }
+        .site-demo-area{position: absolute; top: 0; bottom: 0; width: 100%;}
+        .site-demo-editor textarea{position: absolute; width: 100%; height: 100%; padding: 10px; border: none; resize: none; background-color: #F7FBFF; background-color: #13151A; color: #999; font-family: Courier New; font-size: 12px; -webkit-box-sizing: border-box !important; -moz-box-sizing: border-box !important; box-sizing: border-box !important;}
+        .site-demo-btn{position: absolute; bottom: 15px; right: 20px;}
+        .site-demo-zanzhu{position: absolute; bottom: 0; left: 0; width: 100%; height: 90px; text-align: center; background-color: #e2e2e2; overflow: hidden;}
+        .site-demo-zanzhu>*{position: relative; z-index: 1;}
+        .site-demo-zanzhu:before{content: ""; position: absolute; z-index: 0; top: 50%; left: 50%; width: 120px; margin: -10px 0px 0px -60px; text-align: center; color: rgb(170, 170, 170); font-size: 18px; font-weight: 300; }
+
+        .site-demo-result{position: absolute; right: 0; top: 0; bottom: 0; width: 50%;}
+        .site-demo-result iframe{position: absolute; width: 100%; height: 100%;}
+
+        .site-demo-button{margin-bottom: 30px;}
+        .site-demo-button div{margin: 20px 30px 10px;}
+        .site-demo-button .layui-btn+.layui-btn{margin-left: 0;}
+        .site-demo-button .layui-btn{margin: 0 7px 10px 0; }
+
+        .site-demo-text a{color: #01AAED;}
+
+
+        .site-demo-laytpl{text-align: center;}
+        .site-demo-laytpl textarea,
+        .site-demo-laytpl div span{width: 40%;  padding: 15px; margin: 0 15px;}
+        .site-demo-laytpl textarea{height: 300px; border: none; background-color: #3F3F3F; color: #E3CEAB; font-family: Courier New; resize: none;}
+        .site-demo-laytpl div span{display: inline-block; text-align: center; background: #101010; color: #fff;}
+        .site-demo-tplres{margin: 10px 0; text-align: center}
+        .site-demo-tplres .site-demo-tplh2,
+        .site-demo-tplres .site-demo-tplview{display: inline-block; width: 50%;}
+        .site-demo-tplres h2{padding: 15px; background: #e2e2e2;}
+        .site-demo-tplres h3{font-weight: 700;}
+        .site-demo-tplres div{padding: 14px; border: 1px solid #e2e2e2; text-align: left;}
+
+        .site-demo-upload,
+        .site-demo-upload img{width: 200px; height: 200px; border-radius: 100%;}
+        .site-demo-upload{position: relative; background: #e2e2e2;}
+        .site-demo-upload .site-demo-upbar{position: absolute; top: 50%; left: 50%; margin: -18px 0 0 -56px;}
+        .site-demo-upload .layui-upload-button{background-color: rgba(0,0,0,.2); color: rgba(255,255,255,1);}
+
+        .site-demo-util{position: relative; width: 300px;}
+        .site-demo-util img{width: 300px; border-radius: 100%;}
+        .site-demo-util span{position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: #333; cursor: pointer;}
+        @-webkit-keyframes demo-fengjie {
+            0% {-webkit-filter: blur(0); opacity: 1; background: #fff; height: 300px; border-radius: 100%;}
+            80% {-webkit-filter: blur(50px);  opacity: 0.95;}
+            100% {-webkit-filter: blur(20px); opacity: 0; background: #fff;}
+        }
+        @keyframes demo-fengjie {
+            0% {filter: blur(0); opacity: 1; background: #fff; height: 300px; border-radius: 100%;}
+            80% {filter: blur(50px);  opacity: 0.95;}
+            100% {filter: blur(20px); opacity: 0; background: #fff;}
+        }
+        .site-demo-fengjie{-webkit-animation-name: demo-fengjie; animation-name: demo-fengjie; -webkit-animation-duration: 5s; animation-duration: 5s;}
+
+
+        .layui-layout-admin .site-demo-body{top: 106px;}
+        .site-demo-title{position: fixed; left: 200px; right: 0; top: 65px;}
+        .site-demo-code{position: absolute; left: 0; top: 0; width: 100%; height: 100%; border: none; padding: 10px; resize: none; font-size: 12px; background-color: #F7FBFF; color: #881280; font-family: Courier New;}
+
+        .site-demo-body .layui-elem-quote a{color: #01AAED;}
+        .site-demo-body .layui-elem-quote a:hover{color: #FF5722;}

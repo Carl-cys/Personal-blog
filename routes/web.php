@@ -30,7 +30,6 @@ Route::group(['prefix' => 'home'], function () {
 
 //    Route::get('/article/{id}', 'Home\CategoryController@category');
 
-
 });
 
 
@@ -80,6 +79,12 @@ Route::group(['prefix' => 'admin'], function () {
         Route::any('/uploadCover/{filename?}', 'Admin\CommonController@uploadCover');
 
         Route::any ('/getAjaxMod', 'Admin\CommonController@getAjaxMod');
+
+        Route::any ('/settings', 'Admin\SettingsController@index');
+        Route::post ('/email', 'Admin\SettingsController@email');
+        Route::post ('/webswitch', 'Admin\SettingsController@webSwitch');
+        Route::post ('/custom', 'Admin\SettingsController@custom');
+        Route::post ('/uploadsLogo', 'Admin\SettingsController@logo');
 
 
     });

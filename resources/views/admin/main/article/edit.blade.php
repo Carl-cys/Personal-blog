@@ -43,6 +43,12 @@
                         <input type="text" name="author" value="{{$articleinfo->author}}"  required="" lay-verify="required" placeholder="请输入作者" autocomplete="off" class="layui-input">
                     </div>
                 </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">关键词</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="keyword" required=""  placeholder="请输入关键词，以逗号分隔" autocomplete="off" class="layui-input" value="{{ $articleinfo->keyword }}">
+                    </div>
+                </div>
                 <div class="layui-form-item" style="position:relative;">
                     <label class="layui-form-label">封面</label>
                     <div class="layui-input-inline">
@@ -83,6 +89,14 @@
                         </script>
                     </div>
                 </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: 100px">
+                        发布时间
+                    </label>
+                    <div class="layui-inline">
+                        <input class="layui-input" name="created_at" placeholder="自定义日期格式" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="{{ $articleinfo->created_at }}">
+                    </div>
+                </div>
                 <input type="hidden" value="{{$articleinfo->id}}" name="id">
                 <div class="layui-form-item">
                     <div class="layui-input-block">
@@ -96,7 +110,7 @@
 @endsection
 @section('js')
     <script>
-        layui.use(['form','layer','upload'], function(){
+        layui.use(['form','layer','upload','laydate'], function(){
             $ = layui.jquery;
             var form = layui.form()
                     ,layer = layui.layer

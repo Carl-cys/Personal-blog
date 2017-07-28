@@ -1,5 +1,9 @@
 @extends('home.layouts.layout')
 
+@section('title', $detail->title.'-' )
+@section('desc', $detail->abstract )
+@section('keyword', $detail->keyword )
+
 @section('style')
     <link href="{{asset('/templates/home/css/detail.css')}}" rel="stylesheet" />
 
@@ -27,7 +31,7 @@
                                 <span>浏览：{{$detail->clicks}}</span>
                                 <span>评论：17</span>
                             </div>
-                            {!! $detail->content !!}}
+                            {!! $detail->content !!}
                         </div>
                         <!-- 评论区域 -->
                         {{--<div class="blog-module shadow" style="box-shadow: 0 1px 8px #a6a6a6;">--}}

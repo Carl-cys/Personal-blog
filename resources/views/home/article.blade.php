@@ -1,7 +1,9 @@
 @extends('home.layouts.layout')
+
+@section('title', '文章专栏'.'-' )
+
 @section('style')
     <link href="{{asset('/templates/home/css/article.css')}}" rel="stylesheet" />
-
 @endsection
 
 @section('hero')
@@ -16,7 +18,7 @@
                         <div>
 
                             <h2>
-                                <a href="https://www.iphpt.com/#intro" class="more scrolly"  style="font-size: x-large;">
+                                <a href="{{ url('home/article') }}/#intro" class="more scrolly"  style="font-size: x-large;">
                                     {{$fig->motto}}
                                 </a>
                             </h2>

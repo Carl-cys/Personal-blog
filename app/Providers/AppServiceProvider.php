@@ -95,6 +95,7 @@ class AppServiceProvider extends ServiceProvider
         $cate = Category::where('path', '0')->take(6)->get();
         return $cate;
     }
+
     /**
      * Register any application services.
      *

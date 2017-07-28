@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN" class="js flexbox flexboxlegacy canvas canvastext no-touch indexeddb hashchange history draganddrop rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage applicationcache sb-init" style="overflow-y: hidden;"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Mogo</title>
+    <title>@yield('title'){{ config('config.inc.title') }}</title>
     <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mogo大叔的PHP个人技术博客，分享一些技术文章，分享一些琐碎">
-    <meta name="keywords" content="Mogo大叔、个人博客、技术博客、Linux、php、ubuntu、laravel博客、laravel、php学习、iphpt、iphp、phpt、it里做php的">
-    <link rel="Shortcut Icon" href="{{ asset('/templates/home/img/nice.png') }}" type="image/ico">
+    <meta name="description" content="@yield('desc', config('config.inc.desc'))">
+    <meta name="keywords" content="@yield('keyword', config('config.inc.keyword'))">
+    <link rel="Shortcut Icon" href="{{ asset('/templates/home/img/favicon.ico') }}" type="image/ico">
     <!--全局样式表-->
     <link href="{{asset('/templates/home/css/global.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('/templates/home/css/all.css') }}" media="screen" type="text/css">
@@ -66,17 +66,17 @@
             <div class="container">
                 <!-- Nav logo -->
                 <div class="logo">
-                    <a href="{{url('/home')}}" title="iphpt" class="animsition-link">
-                        <img src="https://odu38kv7q.qnssl.com/nice.png" alt="logo" width="35px;">
+                    <a href="{{url('/home')}}" title="{{ config('config.inc.title') }}" class="animsition-link">
+                        <img src="{{ url(config('config.inc.logo')) }}" alt="logo" width="45px;" style="border-radius: 50%;">
                     </a>
                 </div>
                 <nav>
                     <ul class="nav">
-                        <li><a href="{{url('/home')}}" class="animsition-link">Mogo大大</a></li>
+                        <li><a href="{{url('/home')}}" class="animsition-link">{{ config('config.inc.title') }}</a></li>
 
-                        <li><a href="https://github.com/Carl-cys" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                        <li><a href="{{ config('config.inc.github') }}" title="Github" target="_blank"><i class="icon-github"></i></a></li>
 
-                        <li><a href="" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                        <li><a href="{{ config('config.inc.sina-weibo') }}" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
                         <li class="nolink"><span>Welcome!</span></li>
                     </ul>
                 </nav>
@@ -101,7 +101,7 @@
     <section id="statement">
         <div class="container text-center wow fadeInUp" data-wow-delay="0.5s" style="visibility: hidden; animation-delay: 0.5s; animation-name: none;">
             <div class="row">
-                <p>当你能力不能满足你的野心的时候,你就该沉下心来学习</p>
+                <p>{{ config('config.inc.text') }}</p>
             </div>
         </div>
     </section>
@@ -113,24 +113,20 @@
         <div class="container">
             <div class="copy">
                 <p>
-                    ©<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>Copyright©2017 Mogo Design By LY
-                    粤ICP备17088469号
+                    ©2017<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>{{ config('config.inc.copyright') }}-{{ config('config.inc.number') }}
                 </p>
 
             </div>
-            {{--<div class="social">--}}
-            {{--<ul>--}}
+            <h3 style="text-align: center;color:#fff;">{{ config('config.inc.cooperation') }}</h3>
+            <div class="social">
+            <ul>
 
-            {{--<li><a href="https://github.com/Yela528/laravel-5-myblog" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>--}}
+            <li><a href="{{ config('config.inc.github') }}" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
 
+            <li><a href="{{ config('config.inc.sina-weibo') }}" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
 
-            {{--<li><a href="https://www.iphpt.com/#" title="阿里云推荐码" target="_blank"><i class="icon-qq"></i></a>&nbsp;</li>--}}
-
-
-            {{--<li><a href="http://weibo.com/ylsc633?refer_flag=1001030101_&is_hot=1" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>--}}
-
-            {{--</ul>--}}
-            {{--</div>--}}
+            </ul>
+            </div>
 
             <div class="clearfix"> </div>
         </div>

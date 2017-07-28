@@ -33,10 +33,12 @@
                 </div>
                 <div class="layui-form-item" style="position:relative;">
                     <label class="layui-form-label">封面</label>
+                    <div class="layui-input-block">
+                        <input id="articleCoverSrc" name="img" value="{{$resinfo->img}}" type="text" class="layui-input">
+                    </div>
                     <div class="layui-input-inline">
-                        <input id="articleCoverSrc" name="img" value="{{$resinfo->img}}" type="hidden">
                         <img id="articleCoverImg" class="img-cover"
-                             @if($resinfo->img)
+                             @if($resinfo->img and is_file($resinfo->img))
                              src = "{{$resinfo->img}}"
                              @else
                              src="{{asset('/templates/admin/images/cover_default.jpg')}}"

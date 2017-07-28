@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Mogo后台管理系统</title>
+    <title>{{ config('config.inc.title') }}-后台管理系统</title>
     <link rel="shortcut icon" href="{{asset('templates/admin/images/Logo_40.png')}}" type="image/x-icon">
     <!-- layui.css -->
     <link href="{{asset('templates/admin/plugin/layui/css/layui.css')}}" rel="stylesheet" />
@@ -23,7 +23,7 @@
                 <a class="ht-user-name">管理员</a>
             </div>
         </div>
-        <span class="sys-title">Mogo后台管理系统</span>
+        <span class="sys-title">{{ config('config.inc.title') }}后台管理系统</span>
         <ul class="ht-nav">
             <li class="ht-nav-item">
                 <a target="_blank" href="/">前台入口</a>
@@ -75,7 +75,6 @@
                         <dd><a href="javascript:;" data-url="{{url('/admin/personalInfo')}}" data-id="1324">博主信息</a></dd>
                         <dd><a href="javascript:;" data-url="{{url('/admin/notice')}}" data-id="5">网站公告</a></dd>
                         <dd><a href="javascript:;" data-url="{{url('/admin/figure')}}" data-id="6">网站格言与背景图</a></dd>
-                        <dd><a href="javascript:;">网站信息</a></dd>
                         <dd><a href="javascript:;" data-url="datalist.html" data-id="6">更新日志</a></dd>
                         <dd><a href="javascript:;" data-url="datalist.html" data-id="7">留言管理</a></dd>
                     </dl>
@@ -83,6 +82,7 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;"><i class="fa fa-cog"></i>系统配置</a>
                     <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" data-url="{{ url('/admin/settings') }}" data-id="2366">网站信息</a></dd>
                         <dd><a href="javascript:;">SEO配置</a></dd>
                         <dd><a href="javascript:;">QQ互联</a></dd>
                         <dd><a href="javascript:;">数据库配置</a></dd>

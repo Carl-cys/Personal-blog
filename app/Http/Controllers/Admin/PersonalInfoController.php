@@ -105,8 +105,8 @@ class PersonalInfoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = json_decode( $request->json, true );
 
+        $data = json_decode( $request->json, true );
         $info = PersonalInfo::find($id);
         $info->name         = $data['name'];
         $info->profile      = $data['profile'];
@@ -114,8 +114,11 @@ class PersonalInfoController extends Controller
 //        $info->img          = $data['img'];
 
         if( $info->img !== $data['img'] ){
-            unlink('.'.$info->img);
+            if ( is_file($info->img) ) {
+                unlink('.'.$info->img);
+            }
             $info->img       = $data['img'];
+
         }
 
         if( $info->save() ){
