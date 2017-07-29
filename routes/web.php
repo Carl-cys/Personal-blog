@@ -46,6 +46,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', 'Admin\IndexController@index');
         //文章
         Route::resource('/article', 'Admin\ArticleController');
+        //更新模块
+        Route::any('/updateStaic', 'Admin\UpdateStaicController@updateStatic');
 		//关于我
         Route::resource('/about', 'Admin\AboutController');
         //分类

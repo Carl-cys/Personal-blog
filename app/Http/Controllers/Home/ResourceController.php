@@ -19,7 +19,18 @@ class ResourceController extends Controller
             ->where('deleted_status', '0')
             ->select(['demo_address','id','abstract','is_display','author','title','img','created_at'])->paginate(10);
        //图片加格言
-       $figure =  Figure::select([ 'url','motto', 'img', 'id' ])->get();
-       return view('home.resource',compact('resource', 'request', 'figure'));
+       $figure =  Figure::figure();
+       if( is_file( "./static/resource/resource.html" ) ){
+           //存在就读取静态文件
+           return file_get_contents("./static/resource/resource.html");
+
+       } else {
+           //不存在就保存为静态文件
+          $resourcestatic =  view('home.resource',compact('resource', 'request', 'figure'))->__toString();
+
+           file_put_contents("./static/resource/resource.html" , $resourcestatic );
+
+           return view('home.resource',compact('resource', 'request', 'figure'));
+       }
    }
 }

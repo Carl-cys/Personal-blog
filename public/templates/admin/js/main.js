@@ -207,6 +207,25 @@ layui.define(['element', 'layer', 'util', 'pagesize', 'form'], function (exports
             })
         }
     }
-
+    $('#static').click(function(){
+        var index = layer.load(2);
+        $.ajax({
+            type: 'get',
+            url:  '/admin/updateStaic',
+            dataType: 'json',
+            data: { '_token':'{{csrf_token()}}', 'id': 1 },
+            success:function (data){
+                if(data.status == 1){
+                    //删除成功
+                    layer.msg(data.msg,{icon:1,time:1000});
+                    layer.close( index );
+                } else {
+                    //删除失败
+                    layer.msg(data.msg, {icon: 5,time:1000});
+                    layer.close( index );
+                }
+            }
+        });
+    });
     exports('main', {});
 });

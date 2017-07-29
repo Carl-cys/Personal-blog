@@ -26,6 +26,9 @@
         <span class="sys-title">{{ config('config.inc.title') }}后台管理系统</span>
         <ul class="ht-nav">
             <li class="ht-nav-item">
+                <a href="javascript:;" id="static">更新静态文件</a>
+            </li>
+            <li class="ht-nav-item">
                 <a target="_blank" href="/">前台入口</a>
             </li>
             <li class="ht-nav-item">
@@ -83,6 +86,7 @@
                     <a href="javascript:;"><i class="fa fa-cog"></i>系统配置</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" data-url="{{ url('/admin/settings') }}" data-id="2366">网站信息</a></dd>
+                        <dd><a href="javascript:;"  data-url="{{ url('/admin/updateStaic') }}" data-id="2367">更新模块</a></dd>
                         <dd><a href="javascript:;">SEO配置</a></dd>
                         <dd><a href="javascript:;">QQ互联</a></dd>
                         <dd><a href="javascript:;">数据库配置</a></dd>

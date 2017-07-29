@@ -13,14 +13,27 @@ class DetailController extends Controller
     {
 
         $id = $request->route('id');
+        if( !$id ){
+            abort(404);
+        }
         //获取文章内容
         $detail = $this->articleDetail($id);
-        //获取顶级分类
-        return view('home.detail', compact('detail'));
+        //判断是否存在
+        if( is_file( "./static/detail/".$id.".html" ) ){
+            //存在就先读
+            return file_get_contents("./static/detail/".$id.".html");
+
+        } else {
+
+            $detailstaic = view('home.detail', compact('detail'))->__toString();
+
+            file_put_contents("./static/detail/".$id.".html" , $detailstaic );
+
+            return view('home.detail', compact('detail'));
+
+        }
 
     }
-
-
     /**
      * 获取文章
      * @param $id

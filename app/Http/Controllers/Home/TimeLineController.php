@@ -19,8 +19,19 @@ class TimeLineController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
         //图片加格言
-        $figure =  Figure::select([ 'url','motto', 'img', 'id' ])->get();
-        return view('home.timeline', compact('timeline','request','figure'));
+        $figure =  Figure::figure();
+        if( is_file( "./static/timeline/timeline.html" ) ){
+            //存在就读取静态文件
+            return file_get_contents("./static/timeline/timeline.html");
+        } else {
+            //不存在就保存为静态文件
+            $timelinestaic = view('home.timeline', compact('timeline','request','figure'))->__toString();
+
+            file_put_contents("./static/timeline/timeline.html" , $timelinestaic );
+
+            return view('home.timeline', compact('timeline','request','figure'));
+        }
+
     }
 
 }

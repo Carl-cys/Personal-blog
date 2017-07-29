@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\Article;
+use App\Models\Category;
 use App\Models\Figure;
 use App\Models\Links;
 use App\Models\Navigation;
@@ -36,27 +37,26 @@ class IndexController extends Controller
 			
 			// Redis::set( 'articlelist', $articlelist );
 		// }
-        $articlelist = $this->articleSorting( 'created_at', 'desc' );
-		
+        $articlelist = Article::articleSorting( 'created_at', 'desc' );
         //热文排行
-        $articleclicks= $this->articleSorting( 'clicks', 'desc' );
+        $articleclicks= Article::articleSorting( 'clicks', 'desc' );
         //最近分享
-        $resource = $this->resource();
+        $resource = Resource::resource();
         //一路走来时间
-        $timeline = $this->timeLine();
+        $timeline = TimeLine::timeLine();
         //友情链接
-        $links = $this->links();
+        $links = Links::links();
         //博主信息
-        $info = $this->personalInfo();
+        $info = PersonalInfo::personalInfo();
         //获取公告
-        $notice = $this->notice();
+        $notice = Notice::notice();
         //图片加格言
-       $figure =  Figure::select([ 'url','motto', 'img', 'id' ])->get();
+        $figure = Figure::figure();
 	   
         $cate = [];
 		
         foreach($articlelist as $v){
-            $cate[] = $this->getCateNameByCateId($v->cate_id);
+            $cate[] = Category::getCateNameByCateId($v->cate_id);
         }
 		
 		//判断是否存在
@@ -66,18 +66,15 @@ class IndexController extends Controller
 			return file_get_contents('./index.html');
 			
 		} else {
-			// echo '123';
+
 			//先保存
 			$static = view( 'home.index', compact('cate', 'request', 'figure', 'links', 'info', 'articlelist', 'articleclicks', 'resource', 'timeline', 'notice') )->__toString();
 		
 			file_put_contents('index.html', $static );
 			//返回动态的页面
 			 return view( 'home.index', compact('cate', 'request', 'figure', 'links', 'info', 'articlelist', 'articleclicks', 'resource', 'timeline', 'notice') );
-		
 			
 		}
-       
-		
     }
 
     /**
@@ -103,72 +100,6 @@ class IndexController extends Controller
 
         }
     }
-    /**
-     *  公告
-     */
-    public function notice()
-    {
-        $notice = Notice::take(4)->get();
-        return $notice;
-    }
-    /**
-     * 博主信息
-     * @return mixed
-     */
-    public function personalInfo()
-    {
-       $info = PersonalInfo::select(['name', 'profile', 'address', 'img'])->first();
-        return $info;
-    }
-    /**
-     * 友情链接
-     * @return mixed
-     */
-    public function links()
-    {
-        $links = Links::select(['name','order','link'])
-            ->orderBy('order', 'desc')
-            ->get();
-        return $links;
-    }
-    /**
-     * 一路走来
-     * @return mixed
-     */
-    public function timeLine()
-    {
-        $timeline = TimeLine::select(['title','id','created_at'])
-            ->orderBy('created_at', 'desc')
-            ->take(10)
-            ->get();
-        return $timeline;
-    }
-    /** 最近分享
-     * @return mixed
-     */
-    public function resource()
-    {
-        $resource = Resource::where('deleted_status', '=', 0)
-            ->orderBy( 'created_at','desc' )
-            ->select(['title','id','download_url','created_at'])
-            ->take(4)->get();
 
-        return $resource;
-    }
-    /**
-     * 获取文章排序
-     * @param $field
-     * @param $order
-     * @return mixed
-     */
-    public function articleSorting( $field, $order )
-    {
-		 
-        $article = Article::where('deleted_status', '=', 0)
-            ->orderBy($field, $order)
-            ->select(['cate_id','id', 'abstract','title','created_at','deleted_status','author','img'])
-            ->get();
-        return $article;
-    }
 }
 
