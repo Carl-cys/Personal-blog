@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN" class="js flexbox flexboxlegacy canvas canvastext no-touch indexeddb hashchange history draganddrop rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage applicationcache sb-init" style="overflow-y: hidden;"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN" class="js flexbox flexboxlegacy canvas canvastext no-touch indexeddb hashchange history draganddrop rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage applicationcache sb-init" style="overflow-y: hidden;"><!--<![endif]--><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>@yield('title'){{ config('config.inc.title') }}</title>
     <!-- Meta data -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,8 +53,8 @@
     </ul>
     <!-- Lists in Slidebars -->
     <ul class="sb-menu secondary">
-        <li><a href="https://www.iphpt.com/monthList" class="animsition-link" title="归档">归档</a></li>
-
+       <!-- <li><a href="#" class="animsition-link" title="归档">归档</a></li>-->
+ 
         <li><a href="{{url('/home/about')}}" class="animsition-link" title="about">About</a></li>
     </ul>
 </div>
@@ -116,7 +117,7 @@
                 </p>
 
             </div>
-            <h3 style="text-align: center;color:#fff;">{{ config('config.inc.cooperation') }}</h3>
+            <!-- <h3 style="text-align: center;color:#fff;">{{ config('config.inc.cooperation') }}</h3>-->
             <div class="social">
             <ul>
 

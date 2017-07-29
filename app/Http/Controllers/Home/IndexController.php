@@ -11,14 +11,33 @@ use App\Models\PersonalInfo;
 use App\Models\Resource;
 use App\Models\TimeLine;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redis;
 use App\Http\Controllers\Controller;
 
 class IndexController extends Controller
 {
     public function index( Request $request )
     {
-        //文章列表
+        // 文章列表
+		// $redislist = Redis::get('articlelist');
+		
+		// if( $redislist ){
+			
+			// $article = Redis::get('articlelist');
+			
+			// $articlelist = json_decode($article, true);
+			
+		// } else {
+			
+			// $articlelist = $this->articleSorting( 'created_at', 'desc' );
+		
+			// $articlelist = json_decode($article, true);
+			
+			// Redis::set( 'articlelist', $articlelist );
+		// }
         $articlelist = $this->articleSorting( 'created_at', 'desc' );
+		
         //热文排行
         $articleclicks= $this->articleSorting( 'clicks', 'desc' );
         //最近分享
@@ -33,11 +52,32 @@ class IndexController extends Controller
         $notice = $this->notice();
         //图片加格言
        $figure =  Figure::select([ 'url','motto', 'img', 'id' ])->get();
+	   
         $cate = [];
+		
         foreach($articlelist as $v){
             $cate[] = $this->getCateNameByCateId($v->cate_id);
         }
-        return view( 'home.index', compact('cate', 'request', 'figure', 'links', 'info', 'articlelist', 'articleclicks', 'resource', 'timeline', 'notice') );
+		
+		//判断是否存在
+		if( is_file('./index.html') ){
+			//直接读取
+		
+			return file_get_contents('./index.html');
+			
+		} else {
+			// echo '123';
+			//先保存
+			$static = view( 'home.index', compact('cate', 'request', 'figure', 'links', 'info', 'articlelist', 'articleclicks', 'resource', 'timeline', 'notice') )->__toString();
+		
+			file_put_contents('index.html', $static );
+			//返回动态的页面
+			 return view( 'home.index', compact('cate', 'request', 'figure', 'links', 'info', 'articlelist', 'articleclicks', 'resource', 'timeline', 'notice') );
+		
+			
+		}
+       
+		
     }
 
     /**
@@ -123,6 +163,7 @@ class IndexController extends Controller
      */
     public function articleSorting( $field, $order )
     {
+		 
         $article = Article::where('deleted_status', '=', 0)
             ->orderBy($field, $order)
             ->select(['cate_id','id', 'abstract','title','created_at','deleted_status','author','img'])
