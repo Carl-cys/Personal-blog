@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -27,34 +28,12 @@ class RecycleArticleController extends Controller
             })->paginate(10);
         $cate = [];
         foreach($articles as $v){
-            $cate[] = $this->getCateNameByCateId($v->cate_id);
+            $cate[] = Category::getCateNameByCateId($v->cate_id);
         }
         return view('admin.main.recoveryarticle.index', compact( 'request', 'articles', 'cate' ));
     }
 
-    /**
-     * 获取分类名称
-     * @param $id
-     * @return string
-     */
-    public function getCateNameByCateId($id)
-    {
-        if($id == 0 ){
-            return '顶级分类';
-        }
-
-        $cate = \App\Models\Category::find($id);
-
-        if(empty($cate)){
-
-            return '无';
-
-        }else{
-
-            return $cate->cate_name;
-
-        }
-    }
+   
     /**
      * Show the form for creating a new resource.
      *

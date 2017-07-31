@@ -52,7 +52,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function casual()
     {
-        $casual = Article::select('title','id')->orderBy('created_at','desc')->take(10)->get();
+        $casual = Article::where('deleted_status', '=', 0)
+		->select('title','id')->orderBy('created_at','desc')->take(10)->get();
         return $casual;
     }
     /**
@@ -60,7 +61,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function recommend()
     {
-        $recommend = Article::where('read_ecommend', '1')->select('title','id')->take(10)->get();
+        $recommend = Article::where('deleted_status', '=', 0)
+		->where('read_ecommend', '1')->select('title','id')->take(10)->get();
         return $recommend;
     }
     /**

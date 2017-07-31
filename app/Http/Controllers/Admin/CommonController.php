@@ -7,10 +7,10 @@ use App\Models\Links;
 use App\Models\Navigation;
 use App\Models\Resource;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\XunSearchController;
 use Illuminate\Support\Facades\Input;
 
-class CommonController extends Controller
+class CommonController extends XunSearchController
 {
     /**
      * 是否切换ajax请求
@@ -111,8 +111,23 @@ class CommonController extends Controller
 
         switch( $tablename ){
             case 'mogo_article':
+			
                 $public = Article::findOrFail($id);
-                break;
+				//加入搜索中
+					$xun = [
+						 'id' 		=> $public ->id
+						,'title'	=> $public ->title
+						,'cate_id'  => $public ->cate_id
+						,'clicks' 	=> $public ->clicks
+						,'img' 		=> $public ->img
+						,'keyword'  => $public ->keyword
+						,'author' 	=> $public ->author
+						,'abstract' => $public ->abstract
+						,'create_at'=> $public ->create_at	
+					];
+			
+					$this->addDocumentData($xun);
+				break;
             case 'mogo_resource':
                 $public = Resource::findOrFail($id);
                 break;

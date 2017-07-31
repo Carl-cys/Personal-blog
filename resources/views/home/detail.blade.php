@@ -29,7 +29,7 @@
                                 <span>编辑时间：{{$detail->created_at}}</span>
                                 <span>作者：{{$detail->author}}</span>
                                 <span>浏览：{{$detail->clicks}}</span>
-                                <span>评论：17</span>
+                                <span>评论：0</span>
                             </div>
                             {!! $detail->content !!}
                         </div>

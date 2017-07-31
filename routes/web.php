@@ -21,6 +21,8 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('/detail/{id}', 'Home\DetailController@detail')->where('id', '[0-9]+');
     //文章
     Route::get('/article/{category?}/{id?}', 'Home\ArticleController@article')->where('category', '[a-z]+')->where('id', '[0-9]+');
+	//搜索
+	Route::get('/search/{keyword?}', 'Home\ArticleController@search');
     //资源
     Route::get('/resource', 'Home\ResourceController@resource');
     //时光
@@ -28,6 +30,8 @@ Route::group(['prefix' => 'home'], function () {
     //关于我
     Route::get('/about', 'Home\AboutController@about');
 
+	//流加载
+    Route::any('/flow/{page?}', 'Home\IndexController@flow');
 //    Route::get('/article/{id}', 'Home\CategoryController@category');
 
 });
@@ -83,9 +87,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::any ('/getAjaxMod', 'Admin\CommonController@getAjaxMod');
 
         Route::any ('/settings', 'Admin\SettingsController@index');
+		
         Route::post ('/email', 'Admin\SettingsController@email');
+		
         Route::post ('/webswitch', 'Admin\SettingsController@webSwitch');
+		
         Route::post ('/custom', 'Admin\SettingsController@custom');
+		
         Route::post ('/uploadsLogo', 'Admin\SettingsController@logo');
 
 

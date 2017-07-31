@@ -12,12 +12,12 @@ class UpdateStaicController extends Controller
         if($request->input('id')){
             if(is_file('./index.html')){
                 @unlink('./index.html');
-                    if (is_dir('./static')) {
-                        $this->delFile('./static/detail');
-                        $this->delFile('./static/about');
-                        $this->delFile('./static/resource');
-                        $this->delFile('./static/timeline');
-                        $this->delFile('./static/article');
+                    if (is_dir('./templates/static')) {
+                        $this->delFile('./templates/static/detail');
+                        $this->delFile('./templates/static/about');
+                        $this->delFile('./templates/static/resource');
+                        $this->delFile('./templates/static/timeline');
+                        $this->delFile('./templates/static/article');
                         return $data = [
                             'status' => '1',
                             'msg' => '删除成功'

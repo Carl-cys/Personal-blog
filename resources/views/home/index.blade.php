@@ -63,8 +63,9 @@
                             {{--<span style="color: #009688">不落阁 &nbsp;—— &nbsp;一个.NET程序员的个人博客，新版网站采用Layui为前端框架，目前正在建设中！</span>--}}
                         </div>
                     </div>
+					
                     <!--左边文章列表-->
-                    <div class="blog-main-left">
+                    <div class="blog-main-left" id="flow">
                         @forelse($articlelist as $key => $list)
                             <div class="article shadow">
                                 <div class="article-left">
@@ -80,10 +81,10 @@
                                 </div>
                                 <div class="clear"></div>
                                 <div class="article-footer">
-                                    <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{$list->created_at}}</span>
+                                    <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{date( 'Ymd', strtotime($list['created_at']))}}</span>
                                     <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;{{$list->author}}</span>
                                     <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">{{$cate[$key]}}</a></span>
-                                    <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;浏览数</span>
+                                    <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;{{$list->clicks}}</span>
                                     <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;</span>
                                 </div>
                             </div>
@@ -91,6 +92,7 @@
                             <p>无</p>
                         @endforelse
                     </div>
+				
                     <!--右边小栏目-->
                     <div class="blog-main-right">
                         <div class="blogerinfo shadow">
@@ -158,11 +160,13 @@
 
 @endsection
 @section('js')
-    {{--    <script src="{{ asset('/templates/home/js/home.js') }}"></script>--}}
+		{{--<script src="{{ asset('/templates/home/js/flow.js') }}"></script>--}}
     <script>
+			
         $(function () {
             //播放公告
             playAnnouncement(3000);
+			
         });
         function playAnnouncement(interval) {
             var index = 0;
@@ -174,7 +178,51 @@
                     index = 0;
                 }
                 $announcement.eq(index).stop(true, true).fadeIn().siblings('span').fadeOut();  //下标对应的图片显示，同辈元素隐藏
-            }, interval);
+            }, interval);	
         }
+		
+				layui.use('flow', function(){
+					var $ = layui.jquery; //不用额外加载jQuery，flow模块本身是有依赖jQuery的，直接用即可。
+					var flow = layui.flow;
+					flow.lazyimg();
+					flow.load({
+						elem: '#flow'
+						//指定列表容器
+						,isLazyimg: true
+						,isAuto: true,
+						end: '没有更多了',
+						mb: 200
+						,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
+							var lis = [];
+							var pages;
+							var str = '';
+							if (page == 1) { //数据从第2页开始
+								next(lis.join(''), page < 999999);
+								return;
+							}
+							//以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
+							$.ajax({
+								type: 'post',
+								url : '/home/flow?page='+page,
+								data:{ 'currentIndex': page ,'_token':'{{csrf_token()}}'}
+								,datatype: 'json'
+								,success: function (res){
+								
+									if( res.flow ){								
+										lis.push(res.flow);
+										pages = res.data.last_page;
+										next(lis.join(''), page < pages);
+									} else {
+										
+										next("没有更多了", 0);
+										
+									}
+								}
+							});
+						}
+
+					});
+				});
+
     </script>
 @endsection

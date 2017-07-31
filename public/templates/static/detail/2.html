@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN" class="js flexbox flexboxlegacy canvas canvastext no-touch indexeddb hashchange history draganddrop rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage applicationcache sb-init" style="overflow-y: hidden;"><!--<![endif]--><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>PHP 命名空间 解惑-我的博客</title>
+    <!-- Meta data -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PHP 命名空间 解惑  1. PHP中的命名空间是什么？">
+    <meta name="keywords" content="">
+    <link rel="Shortcut Icon" href="https://mgocc.com/templates/home/img/favicon.ico" type="image/ico">
+    <!--全局样式表-->
+    <link href="https://mgocc.com/templates/home/css/global.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://mgocc.com/templates/home/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="https://mgocc.com/templates/home/css/jquery.fancybox.css" media="screen" type="text/css">
+    <script src="https://mgocc.com/templates/home/js/push.js"></script>
+    <script src="https://mgocc.com/templates/admin/plugin/jq/jquery-1.10.2.min.js"></script>
+    <script src="https://mgocc.com/templates/admin/plugin/layui/layui.js"></script>
+    <!--font-awesome-->
+    <link href="https://mgocc.com/templates/home/plug/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- 本页样式表 -->
+    <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+    <style type="text/css">.fancybox-margin{margin-right:0px;}</style>
+    <link href="https://mgocc.com/templates/home/plug/layui/css/layui.css" rel="stylesheet" />
+        <link href="https://mgocc.com/templates/home/css/detail.css" rel="stylesheet" />
+
+</head>
+<body id="index" class="lightnav animsition pace-done" style="animation-duration: 0.9s; opacity: 1;"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+        <div class="pace-progress-inner"></div>
+    </div>
+    <div class="pace-activity"></div></div>
+<!-- ============================ 左边的导航=========================== -->
+
+<div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling" style="margin-right: -273.188px;">
+    <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+        <img src="https://mgocc.com/templates/home/default/img/close.png" alt="Close">
+    </div>
+    
+    <ul class="sb-menu">
+                    <li><a href="/home" class="animsition-link" title="Home">网站首页</a></li>
+                    <li><a href="/home/article" class="animsition-link" title="Home">文章专栏</a></li>
+                    <li><a href="/home/timeline" class="animsition-link" title="Home">点点滴滴</a></li>
+                    <li><a href="/home/resource" class="animsition-link" title="Home">资源分享</a></li>
+                <li>
+            <a class="sb-toggle-submenu">友情<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+                                    <li><a href="https://blog.lhddo.com" target="_blank" class="link">Gddoin Blog</a></li>
+                                    <li><a href="http://blog.wlforever.com" target="_blank" class="link">Nietzsche_NC Blog</a></li>
+                            </ul>
+        </li>
+
+    </ul>
+    <!-- Lists in Slidebars -->
+    <ul class="sb-menu secondary">
+       <!-- <li><a href="#" class="animsition-link" title="归档">归档</a></li>-->
+ 
+        <li><a href="https://mgocc.com/home/about" class="animsition-link" title="about">About</a></li>
+    </ul>
+</div>
+
+<div id="sb-site" style="min-height: 619px;">
+    <!-- ============================ Nav Header & Logo bar =========================== -->
+    <div id="navigation" class="navbar navbar-fixed-top" style="top: 0px;">
+        <div class="navbar-inner">
+            <div class="container">
+                <!-- Nav logo -->
+                <div class="logo">
+                    <a href="https://mgocc.com/home" title="我的博客" class="animsition-link">
+                        <img src="https://mgocc.com/Uploads/logo/20170729/2017072910190690801.png" alt="logo" width="45px;" style="border-radius: 50%;">
+                    </a>
+                </div>
+                <nav>
+                    <ul class="nav">
+                        <li><a href="https://mgocc.com/home" class="animsition-link">我的博客</a></li>
+
+                        <li><a href="https://github.com/Carl-cys/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+
+                        <li><a href="https://weibo.com" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                        <li class="nolink"><span>Welcome!</span></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="learnmore sb-toggle-right">More</div>
+            <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- ============================ 图片 =========================== -->
+    
+                <!-- ============================ 内容 =========================== -->
+        <section id="intro">
+        <div class="blog-body">
+            <div class="blog-container">
+                <blockquote class="layui-elem-quote sitemap layui-breadcrumb shadow" style="visibility: visible;">
+                    <a href="/" title="网站首页">网站首页<span class="layui-box">&gt;</span></a>
+                    <a href="https://mgocc.com/home/article" title="文章专栏">文章专栏<span class="layui-box">&gt;</span></a>
+                    <a><cite>PHP 命名空间 解惑</cite></a>
+                </blockquote>
+                <div class="blog-main">
+                    <div class="blog-main-left">
+                        <!-- 文章内容（使用Kingeditor富文本编辑器发表的） -->
+                        <div class="article-detail shadow">
+                            <div class="article-detail-title">
+                                PHP 命名空间 解惑
+                            </div>
+                            <div class="article-detail-info">
+                                <span>编辑时间：2017-07-25 00:10:09</span>
+                                <span>作者：岁寒</span>
+                                <span>浏览：0</span>
+                                <span>评论：0</span>
+                            </div>
+                            <h2 class="title"><a href>PHP 命名空间 解惑</a></h2><h2>	1. PHP中的命名空间是什么？</h2><p>官方解释在此：&nbsp;<a href="http://php.net/manual/zh/language.namespaces.rationale.php" target="_blank">命名空间概述</a></p><p>命名空间用一句话说，就是：把 类、函数、变量 等放到逻辑子文件夹中去，以避免命名冲突。</p><p><span style="color:#e28b41"><strong>注：命名空间跟实际代码文件在文件系统中的路径没有任何关系，如果你感到迷茫，可以看看本文最后一节。</strong></span></p><h2>2. 被隐藏的第一个 \</h2><p>在每个 PHP 文件的最开始定义命名空间：</p><pre class="lang-coffeeScript">&lt;?php&nbsp;namespace&nbsp;TinyLara\TinyRoute;
+
+class&nbsp;TinyRoute&nbsp;{
+&nbsp;&nbsp;...
+}</pre><p>在定义命名空间之后引入命名空间：</p><pre class="lang-html">&lt;?php&nbsp;namespace&nbsp;TinyLara\TinyRoute;
+
+use&nbsp;TinyLara\TinyView\TinyView;
+
+class&nbsp;TinyRoute&nbsp;{
+&nbsp;&nbsp;...
+}</pre><p>上述代码中，</p><pre class="lang-json">namespace&nbsp;TinyLara\TinyRoute
+use&nbsp;TinyLara\TinyView\TinyView</pre><p><span style="color:#ef6559"><strong>这两行的真实路径是： \TinyLara\TinyRoute、\TinyLara\TinyView\TinyView，顶级命名空间标识（第一个 \ ）被省略了。</strong></span></p><h2>3. 被隐藏的别名</h2><p>在上一节中中，这一行代码</p><pre class="lang-js">use&nbsp;TinyLara\TinyView\TinyView</pre><p>的完整写法应该是：</p><pre class="lang-markdown">use&nbsp;\TinyLara\TinyView\TinyView&nbsp;as&nbsp;TinyView;</pre><p><strong><span style="color:#ef6559">如果不指定别名，那就默认别名为类名。</span></strong></p><h2>4. 使用绝对路径直接调用</h2><p><br/></p><pre class="lang-c++">&lt;?php&nbsp;namespace&nbsp;TinyLara\TinyRoute;
+
+class&nbsp;TinyRoute&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;foo()
+&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;\TinyLara\TinyView\TinyView::fuck();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</pre><h3><strong><span style="color:#ef6559">使用绝对路径调用类时顶级命名空间标识</span><strong><span style="color:#ef6559">（第一个 \ ）</span></strong><span style="color:#ef6559">不能省略。</span><span style="color:#333333">（很多人都在这个地方迷惑了）</span></strong><br/></h3><h2>5. 命名空间的实际价值</h2><p>	命名空间的存在是为了解决下面两个问题：</p><ol class=" list-paddingleft-2"><li><p>用户编写的代码与PHP内部的类/函数/常量或第三方类/函数/常量之间的名字冲突。<br/></p></li><li><p>为很长的标识符名称（通常是为了缓解第一类问题而定义的）创建一个别名（或简短）的名称，提高源代码的可读性。</p></li></ol><p>目前非常流行的 Composer 就是一个基于命名空间的包管理器/依赖管理器，同样，Laravel 能达到今天的成功，很大程度上也是因为PHP5.3的普及，生恰逢时。你可以在&nbsp;<a href="https://packagist.org/" target="_blank">https://packagist.org/</a>&nbsp;上下载到各种 composer 包，类似于 yum、npm或者gem。<br/></p><h2>6. 同一命名空间下的类可以任意相互调用</h2><pre class="lang-css">&lt;?php&nbsp;namespace&nbsp;A;
+
+class&nbsp;ClassA&nbsp;{
+&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;test()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;&#39;Success!&#39;;
+&nbsp;&nbsp;}
+}</pre><pre class="lang-c++">&lt;?php&nbsp;namespace&nbsp;A;
+
+class&nbsp;ClassB&nbsp;{
+&nbsp;&nbsp;public&nbsp;static&nbsp;function&nbsp;test()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;ClassA::test();&nbsp;//&nbsp;直接调用即可
+&nbsp;&nbsp;}
+}</pre><p>直接调用即可。</p><h2>7. 关于代码文件的结构</h2><p>PSR-4 命名空间规范约定了 PHP 类的命名空间应该和实际在文件系统中的位置一致，而现实中绝大多数 PHP 框架为了方便都采纳了这条规范，最明显的就是 Laravel 4 到 5 的转变。在这种情况下，我发现不少新手又迷茫了，错误地理解了我在上文中的阐述的“路径”的概念。基于此我要简单讲述一下 PHP 运行的基本流程，我相信看完你们就不会再有上面的误解了。</p><h3>PHP 运行流程</h3><p>在一个典型的 Apache + &nbsp;mod_php 架构的 PHP 运行环境中，一个 PHP 网站是这样运行的：</p><ol class=" list-paddingleft-2"><li><p>Apache 收到用户的 HTTP 请求</p></li><li><p>这个请求是以 .php 结尾或者是一个不存在的路径（.htaccess 会将其转发到 index.php）</p></li><li><p>Apache 的 mod_php 会启动一个新的 PHP 进程（PHP 解释器），读取 HTTP 请求的 URL 中的那个 .php 文件或者 index.php</p></li><li><p>被读取进 PHP 解释器的字符串被按照 PHP 的语法进行解析。为了方便理解，我们将这些经过解析的字符串所生成的 context（上下文）命名为 Matrix</p></li><li><p>然后 PHP 解释器会根据从 Matrix 中解析出的特定 PHP 语句（如 require）载入其他 PHP 文件，并将其内容以字符串的形式加入 Matrix</p></li><li><p>最终 Matrix 变成一个数万行代码的巨型上下文（为了便于理解可以想象成巨长的代码文件字符串），PHP 解释器会按照 PHP 语法执行 Matrix，进行数据库连接、网络请求、文件读写等操作</p></li><li><p>每一次的 echo 都会被写入到输出缓冲区，最终这个巨长的代码字符串被执行完毕，PHP 进程退出内存</p></li><li><p>缓冲区中就是要发给用户的 HTTP response，其实就是一堆字符串，只不过它遵守 HTML 规范，可以被浏览器解析。这一堆字符串被 Apache 发送回用户的浏览器，浏览器渲染，用户看到内容</p></li></ol><h3>命名空间在哪里？</h3><p>命名空间从始至终就是一个“内部伪概念”，只是用于解决类和变量的命名冲突，从来就跟实际文件结构没有半毛钱的关系。让大家疑惑的其实是<a href="http://php.net/manual/zh/function.spl-autoload-register.php" target="_blank">自动加载</a>，当它和命名空间混杂在一起的时候，就不容易理解了。命名空间从来就是一个纯 PHP 内部的概念，你可以把整个 Laravel 框架的所有文件合并成一个巨大的 PHP 文件，取消自动加载，除了性能会损失一些，功能不会受到任何影响，命名空间依旧运转良好。</p><p><br/></p><p>转载&nbsp;https://lvwenhan.com/</p><p><br/></p>
+                        </div>
+                        <!-- 评论区域 -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                    <div class="blog-main-right">
+                        <!--右边悬浮 平板或手机设备显示-->
+<div class="category-toggle"><i class="fa fa-chevron-left"></i></div><!--这个div位置不能改，否则需要添加一个div来代替它或者修改样式表-->
+<div class="article-category shadow">
+    <div class="article-category-title">分类导航</div>
+    <!-- 点击分类后的页面和artile.html页面一样，只是数据是某一类别的 -->
+            <a href="/home/article/category/26">PHP</a>
+                <a href="/home/article/category/27">Linux</a>
+                <a href="/home/article/category/28">Laravel</a>
+                <a href="/home/article/category/29">JavaScript</a>
+                <a href="/home/article/category/30">乱七八糟</a>
+            <div class="clear"></div>
+</div>
+<div class="blog-module shadow">
+    <div class="blog-module-title">推荐文章</div>
+    <ul class="fa-ul blog-module-ul">
+                    <li><i class="fa-li fa fa-hand-o-right"></i> <a href="https://mgocc.com/home/detail/1">Git版本控制器</a></li>
+                        <li><i class="fa-li fa fa-hand-o-right"></i> <a href="https://mgocc.com/home/detail/2">PHP 命名空间 解惑</a></li>
+                        <li><i class="fa-li fa fa-hand-o-right"></i> <a href="https://mgocc.com/home/detail/3">php 设计模式</a></li>
+                        <li><i class="fa-li fa fa-hand-o-right"></i> <a href="https://mgocc.com/home/detail/4">Redis安装和自启动配置</a></li>
+                        <li><i class="fa-li fa fa-hand-o-right"></i> <a href="https://mgocc.com/home/detail/14">php操作Memcache服务器的扩展安装</a></li>
+                        <li><i class="fa-li fa fa-hand-o-right"></i> <a href="https://mgocc.com/home/detail/15">关于XunSearch安装与使用</a></li>
+                </ul>
+</div>
+<div class="blog-module shadow">
+    <div class="blog-module-title">随便看看</div>
+    <ul class="fa-ul blog-module-ul">
+                    <li><i class="fa-li fa fa-hand-o-right"></i><a href="https://mgocc.com/home/detail/15">关于XunSearch安装与使用</a></li>
+                    <li><i class="fa-li fa fa-hand-o-right"></i><a href="https://mgocc.com/home/detail/14">php操作Memcache服务器的扩展安装</a></li>
+                    <li><i class="fa-li fa fa-hand-o-right"></i><a href="https://mgocc.com/home/detail/4">Redis安装和自启动配置</a></li>
+                    <li><i class="fa-li fa fa-hand-o-right"></i><a href="https://mgocc.com/home/detail/3">php 设计模式</a></li>
+                    <li><i class="fa-li fa fa-hand-o-right"></i><a href="https://mgocc.com/home/detail/2">PHP 命名空间 解惑</a></li>
+                    <li><i class="fa-li fa fa-hand-o-right"></i><a href="https://mgocc.com/home/detail/1">Git版本控制器</a></li>
+            </ul>
+</div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="statement">
+        <div class="container text-center wow fadeInUp" data-wow-delay="0.5s" style="visibility: hidden; animation-delay: 0.5s; animation-name: none;">
+            <div class="row">
+                <p>当你能力不能满足你的野心的时候,你就该沉下心来学习</p>
+            </div>
+        </div>
+    </section>
+</div>
+    <footer>
+        <div class="container">
+        </div>
+        <div class="container">
+            <div class="copy">
+                <p>
+                    ©2017<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>MyBlog版权所有-粤ICP证17088469号
+                </p>
+
+            </div>
+            <!-- <h3 style="text-align: center;color:#fff;">Carl-cys——开发</h3>-->
+            <div class="social">
+            <ul>
+
+            <li><a href="https://github.com/Carl-cys/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+
+            <li><a href="https://weibo.com" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+
+            </ul>
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+    </footer>
+    <!--分享窗体-->
+    <div class="blog-share layui-hide">
+        <div class="blog-share-body">
+            <div style="width: 200px;height:100%;">
+                <div class="bdsharebuttonbox">
+                    <a class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                    <a class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                    <a class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                    <a class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blog-mask animated layui-hide"></div>
+
+    
+    
+
+<script src="https://mgocc.com/templates/home/js/global.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="https://mgocc.com/templates/home/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="https://mgocc.com/templates/home/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="https://mgocc.com/templates/home/js/scripts.js"></script><!-- Theme scripts -->
+<script src="https://mgocc.com/templates/home/js/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+    var resizeHero = function() {
+        var hero = $(".cover,.heightblock"),
+                window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function() {
+        resizeHero();
+    });
+    $('#intro').find('img').each(function() {
+        var alt = this.alt;
+
+        if (alt) {
+            $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+        }
+
+        $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+    });
+    (function($) {
+        $('.fancybox').fancybox();
+    })(jQuery);
+    $(document).ready(function($) {
+        $('.flexslider').flexslider({
+            animation: "fade",
+            prevText: "",
+            nextText: "",
+            directionNav: true
+        });
+
+    });
+
+    (function() {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+	
+
+    //百度分享插件
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdStyle": "0",
+            "bdSize": "32"
+        },
+        "share": {}
+    };
+    with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'https://mgocc.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+    
+
+</script>
+
+</html>

@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\XunSearchController;
 use Illuminate\Support\Facades\DB;
 
-class ArticleController extends Controller
+class ArticleController extends XunSearchController
 {
+	
+		
     /**
      * 显示列表页
      * @param Request $request
@@ -29,33 +31,11 @@ class ArticleController extends Controller
             })->paginate(10);
         $cate = [];
         foreach($articles as $v){
-            $cate[] = $this->getCateNameByCateId($v->cate_id);
+            $cate[] = Category::getCateNameByCateId($v->cate_id);
         }
         return view('admin.main.article.index', compact( 'request', 'articles', 'cate' ));
     }
-    /**
-     * 获取分类名称
-     * @param $id
-     * @return string
-     */
-    public function getCateNameByCateId($id)
-    {
-        if($id == 0 ){
-            return '顶级分类';
-        }
-
-        $cate = \App\Models\Category::find($id);
-
-        if(empty($cate)){
-
-            return '无';
-
-        }else{
-
-            return $cate->cate_name;
-
-        }
-    }
+  
     /**
      * 显示添加页面
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -95,7 +75,21 @@ class ArticleController extends Controller
 
         //添加
         if( $article->save() ){
-
+			
+			$xun = [
+				 'id' 		=> $article->id
+				,'title'		=> $article->title
+				,'cate_id'  => $article->cate_id
+				,'clicks' 	=> '0'
+				,'img' 		=> $article->img
+				,'keyword'  => $article->keyword
+				,'author' 	=> $article->author
+				,'abstract' => $article->abstract
+				,'create_at'=> date('Y-m-d H:i:s')	
+			];
+			
+			$this->addDocumentData($xun);
+			
             $data = [
                 'status' => 0,
                 'msg'    => '添加成功啦'
@@ -111,7 +105,9 @@ class ArticleController extends Controller
         return $data;
 
     }
+	
 
+	
     /**
      * Display the specified resource.
      *
@@ -209,6 +205,9 @@ class ArticleController extends Controller
 
         $status->deleted_status = 1;
         if( $status->save() ){
+			// $this->clean();
+			$this->deleteDocumentData(array($id), 'id');
+			
             $data = [
                 'status' => 1,
                 'msg'    => '添加回收站成功'

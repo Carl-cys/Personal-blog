@@ -8,6 +8,7 @@ class Article extends Model
 {
    protected $table = 'article';
 
+   
    /**
     * 获取文章排序
     * @param $field
@@ -18,8 +19,8 @@ class Article extends Model
    {
       $article = Article::where('deleted_status', '=', 0)
           ->orderBy($field, $order)
-          ->select(['cate_id','id', 'abstract','title','created_at','deleted_status','author','img'])
-          ->get();
+          ->select(['title','clicks','content','author','created_at','id','img','abstract','cate_id','deleted_status'])
+          ->paginate(5);
       return $article;
    }
 }

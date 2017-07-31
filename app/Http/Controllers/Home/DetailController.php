@@ -18,16 +18,22 @@ class DetailController extends Controller
         }
         //获取文章内容
         $detail = $this->articleDetail($id);
+		
+		//判断session是否存在
+		if ( session('newNum') != $id) {
+			$detail->where('id', $id)->update(['clicks' => $detail->clicks + 1]);
+			session(['newNum' => $id]);
+		}
         //判断是否存在
-        if( is_file( "./static/detail/".$id.".html" ) ){
+        if( is_file( "./templates/static/detail/".$id.".html" ) ){
             //存在就先读
-            return file_get_contents("./static/detail/".$id.".html");
+            return file_get_contents("./templates/static/detail/".$id.".html");
 
         } else {
 
             $detailstaic = view('home.detail', compact('detail'))->__toString();
 
-            file_put_contents("./static/detail/".$id.".html" , $detailstaic );
+            file_put_contents("./templates/static/detail/".$id.".html" , $detailstaic );
 
             return view('home.detail', compact('detail'));
 

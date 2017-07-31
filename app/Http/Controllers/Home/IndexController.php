@@ -76,30 +76,54 @@ class IndexController extends Controller
 			
 		}
     }
-
     /**
-     * 获取分类名称
-     * @param $id
-     * @return string
+     * 流加载首页
+     * @param Request $request
+     * @return mixed
      */
-    public function getCateNameByCateId($id)
+    public function flow( Request $request )
     {
-        if($id == 0 ){
-            return '顶级分类';
-        }
+        $request->input('currentIndex');     
 
-        $cate = \App\Models\Category::find($id);
-
-        if(empty($cate)){
-
-            return '无';
-
-        }else{
-
-            return $cate->cate_name;
-
-        }
-    }
-
+        $flow = Article::where('deleted_status', '=', '0')
+        ->orderBy( 'created_at', 'desc' )
+		->paginate(5);
+			
+		$articlelist = Article::articleSorting( 'created_at', 'desc' );
+		
+        $cate = [];
+		
+		$str = '';
+		foreach($flow as $key => $list){
+			 
+			$cate[] = Category::getCateNameByCateId($list->cate_id);
+												 
+					$str .= '<div class="article shadow">';
+					$str .= '<div class="article-left">';
+					$str .= '<img style="width: 100%;" width="200" height="130" lay-src="'. $list->img.'" alt="'. $list->title.'" />';
+					$str .= '</div>';
+					$str .= '<div class="article-right">';
+					$str .= '<div class="article-title">';
+					$str .= '<a href="/home/detail/'.$list->id.'">'. $list->title.'</a>';
+					$str .= '</div>';
+					$str .= '<div class="article-abstract">'.$list->abstract.'';						
+					$str .= '</div>';
+					$str .= '</div>';
+					$str .= '<div class="clear"></div>';
+					$str .= '<div class="article-footer">';
+					$str .= '<span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;'.date( 'Ymd', strtotime($list['created_at'])).'</span>';
+					$str .= '<span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;'.$list->author.'</span>';
+					$str .= '<span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">'.@$cate[$key].'</a></span>';
+					$str .= '<span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;'.$list->clicks.'</span>';
+					$str .= '<span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;</span>';
+					$str .= '</div>';
+					$str .= '</div>';
+		 }     
+							
+        return  $data =   [
+            'flow' => $str,  
+			'data' => $flow			
+        ];
+	}
 }
 
